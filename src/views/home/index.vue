@@ -1,6 +1,7 @@
 <template>
   <div id="home">
     home
+    
     <Footer />
   </div>
 </template>
@@ -12,7 +13,8 @@ export default {
     Footer
   }
 };
-</script>>
+</script>
 
 <style lang="scss">
+
 </style>
