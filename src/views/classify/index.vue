@@ -1,10 +1,9 @@
 <template>
-  <div id="home">
+  <div id='home'>
      classify
   </div>
 </template>
 
-<style lang="scss">
-
+<style lang='scss'>
 
 </style>
