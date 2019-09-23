@@ -1,5 +1,4 @@
-# wanger
-
+# Netease
 ## Project setup
 ```
 yarn install
