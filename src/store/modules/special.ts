@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getSpecial } from "../../service";
 export default ({
   namespaced: true,
   state: {
@@ -19,20 +20,19 @@ export default ({
        }
   },
   actions: {
-    getSpecial(commit:any,item:any){
-        axios.get('http://202.96.155.121:8888/topic/list',{params:item}).then((res)=>{
-         let data =res.data.data.data;
-         console.log(data)
-          commit("setSpecial",data)
-        })
-      },
-    getTopic(commit:any,id:any){
-      
-        axios.get('http://202.96.155.121:8888/topic/detail',{params:id}).then((res)=>{
-          // console.log(res.data)
-          let list = res.data.data;
-          commit("setTopic",list)
-        })
-      }
+    // getSpecial(commit:any,item:any){
+    //   getSpecial(item).then((res:any)=>{
+    //      let data =res.data.data.data;
+    //      console.log(data)
+    //       commit("setSpecial",data)
+    //     })
+    //   },
+    // getTopic(commit:any,id:any){
+    //     axios.get('http://202.96.155.121:8888/topic/detail',{params:id}).then((res)=>{
+    //       // console.log(res.data)
+    //       let list = res.data.data;
+    //       commit("setTopic",list)
+    //     })
+    //   }
   }
 });
