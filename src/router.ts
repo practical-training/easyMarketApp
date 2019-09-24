@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-
 Vue.use(Router)
 
 export default new Router({
@@ -11,28 +10,32 @@ export default new Router({
     {
       path: '/home',
       name: 'home',
-      component: () => import( './views/home/index.vue')
+      component: () => import('./views/home/index.vue')
     },
     {
       path: '/special',
       name: 'special',
-      component: () => import( './views/special/index.vue')
+      component: () => import('./views/special/index.vue')
     },
     {
       path: '/classify',
       name: 'classify',
-      component: () => import( './views/classify/index.vue')
+      component: () => import('./views/classify/index.vue')
     },
     {
       path: '/car',
       name: 'car',
-      component: () => import( './views/car/index.vue')
+      component: () => import('./views/car/index.vue')
     },
     
     {
       path: '/mine',
       name: 'mine',
-      component: () => import( './views/mine/index.vue')
+      component: () => import('./views/mine/index.vue')
+    },
+    {
+      path: '/',
+      redirect: '/home'
     }
   ]
 })
