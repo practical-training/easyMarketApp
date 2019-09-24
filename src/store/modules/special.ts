@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'axios';
 export default ({
   namespaced: true,
   state: {
@@ -22,7 +22,7 @@ export default ({
     getSpecial(commit:any,item:any){
         axios.get('http://202.96.155.121:8888/topic/list',{params:item}).then((res)=>{
          let data =res.data.data.data;
-        //  console.log(data)
+         console.log(data)
           commit("setSpecial",data)
         })
       },

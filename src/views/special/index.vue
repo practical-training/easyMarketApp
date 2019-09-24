@@ -32,7 +32,9 @@ export default {
     }
   },
   computed:{
-    ...mapState(['list'])
+    ...mapState(['list',{
+      "list":"list"
+    }])
   },
   methods:{
     ...mapActions(['getSpecial']),
@@ -40,8 +42,7 @@ export default {
     
   },
   created(){
-  
-  this.getSpecial({page:this.page,size:this.size})
+  // this.getSpecial({page:this.page,size:this.size})
   },
   mounted(){
     this.$nextTick(() => {
@@ -67,7 +68,7 @@ export default {
       setTimeout(() => {
         // 事情做完，需要调用此方法告诉 better-scroll 数据已加载，否则上拉事件只会执行一次
         this.page++;
-        this.getSpecial({page:this.page,size:this.size})
+        // this.getSpecial({page:this.page,size:this.size})
         this.scroll.finishPullUp()
         }, 2000)
       })
