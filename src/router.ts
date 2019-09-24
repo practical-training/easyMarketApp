@@ -18,6 +18,11 @@ export default new Router({
       component: () => import('./views/special/index.vue')
     },
     {
+      path: '/topic/:id',
+      name: 'topic',
+      component: () => import('./views/special/topic.vue')
+    },
+    {
       path: '/classify',
       name: 'classify',
       component: () => import('./views/classify/index.vue')
