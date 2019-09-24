@@ -6,8 +6,6 @@
     </div>
     <div class="common" ref="itemScroll">
         <div class="topicDetail">
-            <div class="topicDetailImg" v-html="topicxq.content">
-            </div>
             <div class="commentWrap">
                 <div class="titleName">
                     <h4>精选留言</h4>
@@ -15,10 +13,8 @@
                 </div>
                 <div class="commentList">
                     <Topiclist v-for="(item) in commentlist" :key="item.id" :items="item" />
-                    <div class="moreComment" @click="listComment">查看跟多评论</div>
                 </div>
-                <div class="relateTopic">
-                    <div class="relateTopicTitle">推荐专题</div>
+                <div>
                     
                 </div>
             </div>
@@ -46,35 +42,20 @@ export default {
   computed: {
     ...mapState("special", {
       topicxq: "topicxq",
-      commentlist:"commentlist",
-      Relatedlist:"Relatedlist"
+      commentlist:"commentlist"
     })
   },
   methods: {
-    ...mapActions("special", ["getTopic","getComment","gGetRelated"]),
+    ...mapActions("special", ["getTopic","getComment"]),
     goto() {
       this.$router.go(-1);
-    },
-    listComment(){
-        let id = this.id;
-        this.$router.push({
-        path: "/noTabPage",
-        name: "noTabPage",
-        params: {
-          id: id
-        }
-      });
-        
-       
     }
   },
   created() {
     this.id = this.$route.params.id;
     let id = this.id;
-    this.getTopic({ id });
-    this.getComment({valueId:id,typeId:1,page:1,size:5})
-    this.gGetRelated({id})
-    console.log(this.Relatedlist);
+    console.log(id)
+      this.getComment({valueId:id,typeId:1,page:1,size:100})
   },
   mounted() {
     this.$nextTick(() => {

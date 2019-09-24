@@ -82,14 +82,3 @@
     line-height: 50px;
     text-align: center;
 }
-
-.common .topicDetail .commentWrap .relateTopic {
-    width: 100%;
-}
-
-.common .topicDetail .commentWrap .relateTopic .relateTopicTitle {
-    width: 100%;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-}

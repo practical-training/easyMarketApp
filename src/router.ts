@@ -23,6 +23,11 @@ export default new Router({
       component: () => import('./views/special/topic.vue')
     },
     {
+      path: '/noTabPage',
+      name: 'noTabPage',
+      component: () => import('./views/special/noTabPage.vue')
+    },
+    {
       path: '/classify',
       name: 'classify',
       component: () => import('./views/classify/index.vue')
