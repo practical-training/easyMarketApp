@@ -4,22 +4,9 @@
   </div>
 </template>
 <script>
-import { mapActions,mapState } from "vuex";
+
 export default {
-  data() {
-    return {};
-  },
-  computed:{
-    ...mapState("home",{
-      homeData:"data"
-    })
-  },
-  methods: {
-    ...mapActions("home",["updateValue"])
-  },
-  mounted() {
-   this.updateValue()
-  }
+
 };
 </script>
 <style lang="scss">

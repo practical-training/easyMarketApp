@@ -1,24 +1,38 @@
-// import Vue from "vue";
-// import Vuex from "vuex";
-// import { homeproduct } from "../../service";
-// Vue.use(Vuex);
-// export default ({
-//   namespaced: true,
-//   state: {
-//     list:[]
-//   },
-//   mutations: {
-//     setSpecial(state,data:any){
-//         state.list = data;
-//         console.log(state.list,data)
-//       }
-//   },
-//   actions: {
-//     getSpecial({commit}){
-//       axios.get('http://202.96.155.121:8888/topic/list',{params:{page:1,size:5}}).then((res)=>{
-//         let data = res.data.data.data;
-//         commit("setSpecial",data)
-//       })
-//     }
-//   }
-// });
+import axios from 'axios'
+export default ({
+  namespaced: true,
+  state: {
+    list:[],
+    topicxq:{}
+  },
+  mutations: {
+    setSpecial(state:any,data:any){
+              if(data.lenght!==0){
+                data.forEach((item:never)=>{
+                  state.list.push(item)
+                 })
+              }
+    },
+    setTopic(state:any,data:any){
+        state.topicxq=data;
+        console.log(state.topicxq)
+       }
+  },
+  actions: {
+    getSpecial(commit:any,item:any){
+        axios.get('http://202.96.155.121:8888/topic/list',{params:item}).then((res)=>{
+         let data =res.data.data.data;
+        //  console.log(data)
+          commit("setSpecial",data)
+        })
+      },
+    getTopic(commit:any,id:any){
+      
+        axios.get('http://202.96.155.121:8888/topic/detail',{params:id}).then((res)=>{
+          // console.log(res.data)
+          let list = res.data.data;
+          commit("setTopic",list)
+        })
+      }
+  }
+});
