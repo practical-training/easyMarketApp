@@ -43,12 +43,12 @@ export default {
   this.getSpecial()
   },
   mounted(){
-    this.$nextTick(() => {
-      
-        this.scroll = new BScroll(this.$refs.itemScroll, {
-            click: true,
-            probeType: 3
-            })
+    // this.$nextTick(() => {
+      // let itemScroll = this.$refs.itemScroll;
+        // this.scroll = new BScroll('special-item', {
+        //     click: true,
+        //     probeType: 3
+        //     })
             // console.log(this.scroll)
             // this.scroll.on('scroll', (pos) => {
             //   console.log(pos)
@@ -76,7 +76,7 @@ export default {
         //       }
         //   }
         // })
-      })
+      // })
   }
 }
 </script>
@@ -95,7 +95,7 @@ export default {
   width: 100%;
   overflow: hidden;
   z-index: 1;
- position: absolute;
+  position: absolute;
 }
 
 </style>
