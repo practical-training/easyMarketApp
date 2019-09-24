@@ -1,4 +1,5 @@
 import axios from "axios";
+import {} from "antd"
 // import { getToken } from "./index";
 const instance = axios.create({
   baseURL:"http://127.0.0.1:8888",
@@ -16,13 +17,13 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   (response) => {
     if (response.status==200) {
-     alert(response.statusText);
+    //  alert(response.statusText);
     }
     return response.data;
   },
   error => {
     if (error.response.status && error.response.status !== 200) {
-      alert(error.response.statusText);
+      // alert(error.response.statusText);
     }
     return Promise.resolve(error);
   }
