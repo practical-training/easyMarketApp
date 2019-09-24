@@ -1,6 +1,7 @@
 <template>
     <div>
-        详情
+        <header><span>&lt;</span><h4>关爱每一个成长的痕迹</h4></header>
+        <div></div>
     </div>
 </template>
 <script>
@@ -19,13 +20,15 @@ export default {
         }
     },
     computed:{
-
+        ...mapState(['topicxq'])
     },
     methods:{
-
+        ...mapActions(['getTopic'])
     },
     created(){
-        console.log(this.$route.params.id)
+        let id = this.$route.params.id;
+        this.getTopic({id})
+        console.log(this.topicxq)
     },
     mounted(){
 
