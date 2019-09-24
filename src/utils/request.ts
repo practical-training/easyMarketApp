@@ -16,7 +16,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   (response) => {
     if (response.status==200) {
-     alert(response.statusText);
+    //  alert(response.statusText);
     }
     return response.data;
   },

@@ -1,4 +1,4 @@
 import request from "../utils/request"
 export let homeproduct=()=>{
-    return request.get("/")
+    return request.get("/")//首页
 }
