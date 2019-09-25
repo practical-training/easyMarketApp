@@ -42,12 +42,18 @@ export default new Router({
       name: 'car',
       component: () => import('./views/car/index.vue')
     },
-    
     {
       path: '/mine',
       name: 'mine',
       component: () => import('./views/mine/index.vue')
     },
+    {
+      path: '/collectlist',
+      name: 'collectlist',
+      component: () => import('./views/mine/collectlist.vue')
+    },
+
+    
     {
       path:"/funny",
       name:"funny",

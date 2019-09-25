@@ -10,7 +10,7 @@ export default {
   },
   mutations: {
     setSpecial(state: any, data: any) {
-      if(!state.list.length){
+      if(!state.list.lenght){
         state.list=data;
       }else {
         data.forEach((item: never) => {
