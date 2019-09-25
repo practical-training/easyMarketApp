@@ -39,7 +39,7 @@ export default {
       });
     },
     async getTopic({ commit }: any, id: any) {
-      let data = await GetTopic(id).then(res => {
+      let data = await GetTopic(id).then((res: any) => {
   
         let list = res.data;
         commit("setTopic", list);
