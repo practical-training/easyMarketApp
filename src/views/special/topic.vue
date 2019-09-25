@@ -11,7 +11,7 @@
             <div class="commentWrap">
                 <div class="titleName">
                     <h4>精选留言</h4>
-                    <span>1</span>
+                    <span>评论</span>
                 </div>
                 <div class="commentList" >
                     <Topiclist v-for="(item) in commentlist" :key="item.id" :items="item" />
@@ -68,7 +68,7 @@ export default {
       });  
     },
     idChange(id){
-      console.log(id)
+      // console.log(id)
       this.getTopic({ id });
       this.getComment({valueId:id,typeId:1,page:1,size:5})
       this.gGetRelated({id})
@@ -80,7 +80,7 @@ export default {
     this.getTopic({ id });
     this.getComment({valueId:id,typeId:1,page:1,size:5})
     this.gGetRelated({id})
-    console.log(this.topicxq);
+    // console.log(this.topicxq);
   },
   mounted() {
     this.$nextTick(() => {

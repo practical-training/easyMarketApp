@@ -10,7 +10,9 @@ export default {
   },
   mutations: {
     setSpecial(state: any, data: any) {
-      if (data.lenght !== 0) {
+      if(!state.list.lenght){
+        state.list =data;
+      }else {
         data.forEach((item: never) => {
           state.list.push(item);
         });
@@ -18,7 +20,7 @@ export default {
     },
     setTopic(state: any, data: any) {
       state.topicxq = data;
-      console.log(state.topicxq)
+      // console.log(state.topicxq)
     },
     setComment(state:any,data:any){
       state.commentlist=data;
