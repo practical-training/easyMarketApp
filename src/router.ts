@@ -44,6 +44,11 @@ export default new Router({
       component:()=>import("./views/funny/index.vue")
     },
     {
+      path:"/details",
+      name:"details",
+      component:()=>import("./views/details/index.vue")
+    },
+    {
       path: '/',
       redirect: '/home'
     }

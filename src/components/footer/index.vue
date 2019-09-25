@@ -26,7 +26,7 @@
 <style lang="scss">
 .footer{
   width: 100%;
-  height: 50px;
+  height:calc(0.5rem);
   background: #fff;
   border-top: 1px solid #ccc;
   position: fixed;
@@ -34,15 +34,17 @@
   left: 0;
   z-index: 2;
   display: flex;
+  font-size:14px;
 }
 
 .footer a{
   flex: 1;
   height: 100%;
-  line-height: 50px;
-  text-align: center;
+  display:flex;
+  align-items: center;
+  justify-content: center;
   color: #000;
   text-decoration: none;
-   list-style: none;
+  list-style: none;
 }
 </style>
