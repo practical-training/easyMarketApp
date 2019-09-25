@@ -2,7 +2,7 @@
   <div class="home" >
     <div class="header">
       <span @click="goto">&lt;</span>
-      <h4>关爱每一个成长的痕迹</h4>
+      <h4>{{topicxq.title}}</h4>
     </div>
     <div class="common" ref="itemScroll">
         <div class="topicDetail">
@@ -13,13 +13,13 @@
                     <h4>精选留言</h4>
                     <span>1</span>
                 </div>
-                <div class="commentList">
+                <div class="commentList" >
                     <Topiclist v-for="(item) in commentlist" :key="item.id" :items="item" />
                     <div class="moreComment" @click="listComment">查看跟多评论</div>
                 </div>
                 <div class="relateTopic">
                     <div class="relateTopicTitle">推荐专题</div>
-                    
+                    <RelateTopicItem v-for="(item) in relatedlist " :key="item.id" :items="item" @func="idChange"/>
                 </div>
             </div>
         </div>  
@@ -30,13 +30,15 @@
 import "./css/topic.css";
 import BScroll from "better-scroll";
 import Topiclist from './components/topiclist'
+import RelateTopicItem from './components/relateTopicItem'
 import { mapState, mapActions, mapMutations } from "vuex";
 export default {
   props: {
 
   },
   components: {
-      Topiclist
+      Topiclist,
+      RelateTopicItem
   },
   data() {
     return {
@@ -47,7 +49,7 @@ export default {
     ...mapState("special", {
       topicxq: "topicxq",
       commentlist:"commentlist",
-      Relatedlist:"Relatedlist"
+      relatedlist:"relatedlist"
     })
   },
   methods: {
@@ -63,9 +65,13 @@ export default {
         params: {
           id: id
         }
-      });
-        
-       
+      });  
+    },
+    idChange(id){
+      console.log(id)
+      this.getTopic({ id });
+      this.getComment({valueId:id,typeId:1,page:1,size:5})
+      this.gGetRelated({id})
     }
   },
   created() {
@@ -74,7 +80,7 @@ export default {
     this.getTopic({ id });
     this.getComment({valueId:id,typeId:1,page:1,size:5})
     this.gGetRelated({id})
-    console.log(this.Relatedlist);
+    console.log(this.topicxq);
   },
   mounted() {
     this.$nextTick(() => {

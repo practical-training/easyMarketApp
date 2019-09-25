@@ -6,7 +6,7 @@ export default {
     list: [],
     topicxq: {},
     commentlist:[],
-    Relatedlist:[]
+    relatedlist:[]
   },
   mutations: {
     setSpecial(state: any, data: any) {
@@ -22,10 +22,11 @@ export default {
     },
     setComment(state:any,data:any){
       state.commentlist=data;
+      
     },
     setGetRelated(state:any,data:any){
-      state.Relatedlist=data;
-      console.log(state.Relatedlist)
+      state.relatedlist=data;
+      // console.log(state.relatedlist)
     }
   },
   actions: {
@@ -37,7 +38,7 @@ export default {
     },
     async getTopic({ commit }: any, id: any) {
       let data = await GetTopic(id).then(res => {
-        console.log(res.data)
+  
         let list = res.data;
         commit("setTopic", list);
       });
@@ -50,7 +51,7 @@ export default {
     },
     async gGetRelated({ commit }: any, item: any) {
       let data = await GetRelated(item).then((res:any) => {
-        console.log(res.data)
+        
         commit("setGetRelated", res.data);
       });
     }

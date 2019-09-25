@@ -1,7 +1,8 @@
 <template>
     <div class="commentItem">
         <div class="userInfo">
-            <div>preo</div>
+            <div v-if="items.user_info.nickname">{{items.user_info.nickname}}</div>
+            <div v-else>匿名用户</div>
             <div>{{items.add_time}}</div>
         </div>
         <div class="userComment">{{items.content}}</div>
