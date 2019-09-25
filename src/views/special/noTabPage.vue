@@ -2,24 +2,20 @@
   <div class="home" >
     <div class="header">
       <span @click="goto">&lt;</span>
-      <h4>{{topicxq.title}}</h4>
+      <h4>关爱每一个成长的痕迹</h4>
     </div>
     <div class="common" ref="itemScroll">
         <div class="topicDetail">
-            <div class="topicDetailImg" v-html="topicxq.content">
-            </div>
             <div class="commentWrap">
                 <div class="titleName">
                     <h4>精选留言</h4>
                     <span>1</span>
                 </div>
-                <div class="commentList" >
+                <div class="commentList">
                     <Topiclist v-for="(item) in commentlist" :key="item.id" :items="item" />
-                    <div class="moreComment" @click="listComment">查看跟多评论</div>
                 </div>
-                <div class="relateTopic">
-                    <div class="relateTopicTitle">推荐专题</div>
-                    <RelateTopicItem v-for="(item) in relatedlist " :key="item.id" :items="item" @func="idChange"/>
+                <div>
+                    
                 </div>
             </div>
         </div>  
@@ -30,15 +26,13 @@
 import "./css/topic.css";
 import BScroll from "better-scroll";
 import Topiclist from './components/topiclist'
-import RelateTopicItem from './components/relateTopicItem'
 import { mapState, mapActions, mapMutations } from "vuex";
 export default {
   props: {
 
   },
   components: {
-      Topiclist,
-      RelateTopicItem
+      Topiclist
   },
   data() {
     return {
@@ -48,39 +42,20 @@ export default {
   computed: {
     ...mapState("special", {
       topicxq: "topicxq",
-      commentlist:"commentlist",
-      relatedlist:"relatedlist"
+      commentlist:"commentlist"
     })
   },
   methods: {
-    ...mapActions("special", ["getTopic","getComment","gGetRelated"]),
+    ...mapActions("special", ["getTopic","getComment"]),
     goto() {
       this.$router.go(-1);
-    },
-    listComment(){
-        let id = this.id;
-        this.$router.push({
-        path: "/noTabPage",
-        name: "noTabPage",
-        params: {
-          id: id
-        }
-      });  
-    },
-    idChange(id){
-      console.log(id)
-      this.getTopic({ id });
-      this.getComment({valueId:id,typeId:1,page:1,size:5})
-      this.gGetRelated({id})
     }
   },
   created() {
     this.id = this.$route.params.id;
     let id = this.id;
-    this.getTopic({ id });
-    this.getComment({valueId:id,typeId:1,page:1,size:5})
-    this.gGetRelated({id})
-    console.log(this.topicxq);
+    console.log(id)
+      this.getComment({valueId:id,typeId:1,page:1,size:100})
   },
   mounted() {
     this.$nextTick(() => {

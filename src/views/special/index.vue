@@ -32,17 +32,17 @@ export default {
     }
   },
   computed:{
-    ...mapState(['list',{
-      "list":"list"
-    }])
+    ...mapState('special', {
+      list: "list"
+    })
   },
   methods:{
-    ...mapActions(['getSpecial']),
+    ...mapActions('special',['getSpecial']),
     
     
   },
   created(){
-  // this.getSpecial({page:this.page,size:this.size})
+    this.getSpecial({page:this.page,size:this.size})
   },
   mounted(){
     this.$nextTick(() => {
@@ -66,14 +66,11 @@ export default {
       this.scroll.on('pullingUp', () => {
       console.log('处理上拉加载操作')
       setTimeout(() => {
-        // 事情做完，需要调用此方法告诉 better-scroll 数据已加载，否则上拉事件只会执行一次
         this.page++;
-        // this.getSpecial({page:this.page,size:this.size})
+        this.getSpecial({page:this.page,size:this.size})
         this.scroll.finishPullUp()
         }, 2000)
       })
-
-
       // this.getSpecial()
       // this.scroll.on('pullingDown', () => {
       // console.log('处理下拉刷新操作')

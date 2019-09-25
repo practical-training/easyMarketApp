@@ -129,6 +129,10 @@ export default {
   methods: {
     ...mapActions("home", ["updateValue"])
   },
+   created(){
+    console.log(this.homeData)
+    
+  },
   mounted() {
     this.updateValue();
   }

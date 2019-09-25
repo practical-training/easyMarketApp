@@ -2,7 +2,7 @@ import axios from "axios";
 import {} from "antd"
 // import { getToken } from "./index";
 const instance = axios.create({
-  baseURL:"http://127.0.0.1:8888",
+  baseURL:"http://202.96.155.121:8888",
   // timeout: 1000,
   // headers: { authorization: getToken() }
 });
