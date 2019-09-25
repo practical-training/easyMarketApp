@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GetSpecial ,GetTopic,GetComment,GetRelated} from "../../service";
+import { GetSpecial ,GetTopic,GetComment,GetRelated,GetCommentpost} from "../../service";
 export default {
   namespaced: true,
   state: {
@@ -10,8 +10,8 @@ export default {
   },
   mutations: {
     setSpecial(state: any, data: any) {
-      if(!state.list.lenght){
-        state.list =data;
+      if(!state.list.length){
+        state.list=data;
       }else {
         data.forEach((item: never) => {
           state.list.push(item);
@@ -55,6 +55,12 @@ export default {
       let data = await GetRelated(item).then((res:any) => {
         
         commit("setGetRelated", res.data);
+      });
+    },
+    async getCommentpost({ commit }: any, item: any) {
+      let data = await GetCommentpost(item).then((res:any) => {
+        console.log(res)
+        // commit("setCommentpost", res.data);
       });
     }
   }

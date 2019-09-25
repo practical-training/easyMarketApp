@@ -11,7 +11,7 @@
             <div class="commentWrap">
                 <div class="titleName">
                     <h4>精选留言</h4>
-                    <span>评论</span>
+                    <span @click="comment">评论</span>
                 </div>
                 <div class="commentList" >
                     <Topiclist v-for="(item) in commentlist" :key="item.id" :items="item" />
@@ -72,6 +72,18 @@ export default {
       this.getTopic({ id });
       this.getComment({valueId:id,typeId:1,page:1,size:5})
       this.gGetRelated({id})
+    },
+    comment(){
+          let id = this.id;
+          let topicxq = this.topicxq ;
+        console.log(topicxq)
+        this.$router.push({
+        path: "/comment",
+        name: "comment",
+        params: {
+          topicxq: topicxq
+        }
+      });
     }
   },
   created() {

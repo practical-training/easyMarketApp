@@ -15,3 +15,7 @@ export let GetRelated=(data:any)=>{
     // console.log(data)
     return request.get("/topic/related",{params:data})
 }
+export let GetCommentpost=(data:any)=>{
+    // console.log(data)
+    return request.post("/comment/post",{params:data})
+}

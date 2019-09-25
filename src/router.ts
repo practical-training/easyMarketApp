@@ -28,6 +28,11 @@ export default new Router({
       component: () => import('./views/special/noTabPage.vue')
     },
     {
+      path: '/comment/:topicxq',
+      name: 'comment',
+      component: () => import('./views/special/comment.vue')
+    },
+    {
       path: '/classify',
       name: 'classify',
       component: () => import('./views/classify/index.vue')
