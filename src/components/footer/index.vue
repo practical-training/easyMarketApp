@@ -24,4 +24,5 @@
 </template>
 
 <style lang='scss'>
+@import url("./index.css");
 </style>
