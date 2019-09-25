@@ -38,6 +38,11 @@ export default new Router({
       component:()=>import("./views/funny/index.vue")
     },
     {
+      path:"/detail/:id",
+      name:"detail",
+      component:()=>import("./views/detail/index.vue")
+    },
+    {
       path: '/',
       redirect: '/home'
     }

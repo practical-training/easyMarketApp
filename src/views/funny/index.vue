@@ -22,7 +22,7 @@
       </div>
       <div class="content">
         <div class="contentbox">
-          <div class="item" v-for="item in funnydata" :key="item.id">
+          <div class="item" v-for="item in funnydata" :key="item.id" @click="jupdetail(item.id)">
             <img v-lazy="item.list_pic_url" alt="">
             <span>{{item.name}}</span>
             <span :style="{color:'red'}">￥{{item.retail_price}}</span>
@@ -45,7 +45,7 @@ export default {
     };
   },
   computed: {
-    ...mapState("classify", ["itemClassify", "funnydata", "initfunnydata"])
+    ...mapState("classify", ["itemClassify", "funnydata"])
   },
   methods: {
     ...mapActions("classify", ["funnyClassify"]),
@@ -55,6 +55,9 @@ export default {
     },
     goback(){
       this.$router.go(-1)
+    },
+    jupdetail(id){
+      this.$router.push(`/detail/${id}`)
     }
   },
   mounted(){
@@ -63,6 +66,8 @@ export default {
     this.describe = this.itemClassify[this.count].front_name;
     this.categoryId = this.itemClassify[this.count].id;
     this.funnyClassify({categoryId:this.categoryId});
+    // console.log(this.tit, '22222')
+    console.log('tag', '')
   }
 };
 </script>
