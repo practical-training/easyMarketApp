@@ -14,6 +14,12 @@ body,
   font-size: calc(100 / 375 * 100vw);
 }
 
+.warper2 .main .content .serveList span, .warper2 .main .content .describe span, .warper2 .main .content .canshu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .warper2 {
   width: 100%;
   height: 100%;
@@ -24,14 +30,17 @@ body,
 
 .warper2 .header {
   width: 100%;
-  height: calc(0.4rem);
+  height: calc(0.5rem);
   display: flex;
-  box-shadow: 0 0.04rem 0.08rem 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.04) i;
-  box-shadow-width: 30px;
-  box-shadow-height: 100%;
-  box-shadow-display: flex;
-  box-shadow-align-items: center;
-  box-shadow-justify-content: center;
+  border-bottom: 2px solid #f4f4f4;
+}
+
+.warper2 .header i {
+  display: flex;
+  width: 30px;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
 }
 
 .warper2 .header span {
@@ -41,4 +50,105 @@ body,
   font-size: 16px;
   align-items: center;
   justify-content: center;
+}
+
+.warper2 .main {
+  flex: 1;
+  overflow: auto;
+  background: #f5f5f9;
+}
+
+.warper2 .main .content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.warper2 .main .content .show {
+  width: 100%;
+  height: calc(1rem);
+}
+
+.warper2 .main .content .serveList {
+  width: 100%;
+  height: calc(0.4rem);
+  background: #f4f4f4;
+  display: flex;
+  background: #fff;
+}
+
+.warper2 .main .content .serveList span {
+  flex: 1;
+  font-size: 12px;
+  color: rgba(126, 105, 105, 0.4);
+  background: #fff;
+}
+
+.warper2 .main .content .describe {
+  width: 100%;
+  height: calc(1.4rem);
+  padding: calc(0.2rem);
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+.warper2 .main .content .describe span {
+  flex: 1;
+}
+
+.warper2 .main .content .describe span:nth-child(1) {
+  width: 100%;
+  height: calc(0.3rem);
+  margin-bottom: calc(0.1rem);
+  font-weight: 400;
+  font-size: calc(0.2rem);
+}
+
+.warper2 .main .content .describe span:nth-child(2) {
+  width: 100%;
+  height: calc(0.2rem);
+  margin-bottom: calc(0.1rem);
+}
+
+.warper2 .main .content .describe span:nth-child(3) {
+  font-size: 24px;
+  color: red;
+}
+
+.warper2 .main .content .specification {
+  width: 100%;
+  height: calc(0.5rem);
+  padding: 0 calc(0.2rem);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background: #fff;
+}
+
+.warper2 .main .content .specification span {
+  margin: 0 5px;
+}
+
+.warper2 .main .content .canshu {
+  width: 100%;
+  height: calc(0.6rem);
+  color: #2196f3;
+  background: #fff;
+  margin: calc(0.1rem) 0;
+}
+
+.warper2 .main .content .issue {
+  width: 100%;
+  height: calc(4.4rem);
+  background: #fff;
+  padding: calc(0.2rem);
+  display: flex;
+  flex-direction: column;
+}
+
+.warper2 .carfooter {
+  width: 100%;
+  height: calc(0.5rem);
+  background: red;
 }

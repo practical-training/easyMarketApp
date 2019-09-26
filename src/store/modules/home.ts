@@ -1,7 +1,5 @@
-import Vue from "vue";
-import Vuex from "vuex";
 import { homeproduct } from "../../service";
-Vue.use(Vuex);
+
 export default ({
   namespaced: true,
   state: {

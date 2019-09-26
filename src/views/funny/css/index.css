@@ -48,7 +48,7 @@ body,
 .warper1 .nav {
   width: 100%;
   height: calc(0.4rem);
-  overflow-x: auto;
+  overflow-x: hidden;
 }
 
 .warper1 .nav .navbox {
@@ -92,10 +92,37 @@ body,
   justify-content: center;
 }
 
+.warper1 .main .down {
+  width: 100%;
+  height: calc(0.4rem);
+  background: #fff;
+  text-align: center;
+  line-height: calc(0.4rem);
+  display: none;
+}
+
+.warper1 .main .more {
+  width: 100%;
+  height: calc(0.4rem);
+  background: #fff;
+  text-align: center;
+  line-height: calc(0.4rem);
+  display: none;
+}
+
+.warper1 .main .active {
+  width: 100%;
+  height: calc(0.4rem);
+  background: #fff;
+  text-align: center;
+  line-height: calc(0.4rem);
+  display: block;
+}
+
 .warper1 .main .content {
   width: 100%;
   height: calc(5.17rem);
-  overflow: auto;
+  overflow: hidden;
 }
 
 .warper1 .main .content .contentbox {

@@ -2,11 +2,35 @@
   <div class="warper2">
      <div class="header">
       <i @click="goback">&lt;</i>
-      <span>{{tit}}</span>
+      <span>{{info.name}}</span>
       <i></i>
     </div>
     <div class="main">
+      <div class="content">
+        <div class="show">
 
+        </div>
+        <div class="serveList">
+          <span><b style="color:red">★</b> 30天无忧退货</span>
+          <span><b style="color:red">★</b> 48小时快速退款</span>
+          <span><b style="color:red">★</b> 满88元免邮费</span>
+        </div>
+        <div class="describe">
+          <span>{{info.name}}</span>
+          <span>{{info.goods_brief}}</span>
+          <span>￥{{info.retail_price}}</span>
+        </div>
+        <div class="specification">
+          <span>X0</span>
+          <span>选择规格></span>
+        </div>
+        <div class="canshu">
+          —— 商品详情 ——
+        </div>
+        <div class="issue"> 
+
+        </div>
+      </div>
     </div>
     <div class="carfooter">
 
@@ -19,7 +43,9 @@ export default {
   data() {
     return {
         id:"",
-        tit:""
+        info:"",
+        issue:"",
+        productList:""
     };
   },
   computed: {
@@ -27,15 +53,20 @@ export default {
   },
   methods:{
       ...mapActions("product",["productDetil"]),
-       goback(){
+    goback(){
       this.$router.go(-1)
     }
   },
   mounted(){
       this.id=this.$route.params.id
       this.productDetil({id:this.id})
-      this.tit=this.data.info.name
-      console.log(this.data.info.name, '')
+  },
+  watch:{
+    data:function(){
+       this.info=this.data.info
+       this.issue=this.data.issue
+       this.productList=this.data.productList
+    }
   }
 };
 </script>

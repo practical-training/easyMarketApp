@@ -18,6 +18,16 @@ export default new Router({
       component: () => import('./views/special/index.vue')
     },
     {
+      path: '/topic/:id',
+      name: 'topic',
+      component: () => import('./views/special/topic.vue')
+    },
+    {
+      path: '/noTabPage',
+      name: 'noTabPage',
+      component: () => import('./views/special/noTabPage.vue')
+    },
+    {
       path: '/classify',
       name: 'classify',
       component: () => import('./views/classify/index.vue')
@@ -27,13 +37,14 @@ export default new Router({
       name: 'car',
       component: () => import('./views/car/index.vue')
     },
+    
     {
       path: '/mine',
       name: 'mine',
       component: () => import('./views/mine/index.vue')
     },
     {
-      path:"/funny",
+      path:"/funny/:id",
       name:"funny",
       component:()=>import("./views/funny/index.vue")
     },

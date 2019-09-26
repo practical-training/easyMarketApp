@@ -4,31 +4,21 @@
   </div>
 </template>
 <script>
-import { mapActions,mapState } from "vuex";
+
 export default {
-  data() {
-    return {};
-  },
-  computed:{
-    ...mapState("home",{
-      homeData:"data"
-    })
-  },
-  methods: {
-    ...mapActions("home",["updateValue"])
-  },
-  mounted() {
-   this.updateValue()
-  }
+
 };
 </script>
 <style lang="scss">
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+body,html,#app{
+  width: 100%;
+  height: 100%;
+}
+*{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
 }
 
 </style>
