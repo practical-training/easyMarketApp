@@ -42,7 +42,7 @@ export default {
         })
     },
     methods:{
-        ...mapActions('mine',['getCollect']),
+        ...mapActions('mine',['getCollect','getGoodscount']),
         goto() {
       this.$router.go(-1);
     },
