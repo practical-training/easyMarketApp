@@ -26,20 +26,21 @@
 <style lang="scss">
 .footer{
   width: 100%;
-  height: 50px;
+  height:1rem;
   background: #fff;
-  border-top: 1px solid #ccc;
+  border-top: 0.02rem solid #ccc;
   position: fixed;
   bottom: 0;
   left: 0;
   z-index: 2;
   display: flex;
+  font-size: .24rem;
 }
 
 .footer a{
   flex: 1;
   height: 100%;
-  line-height: 50px;
+  line-height: 1rem;
   text-align: center;
   color: #000;
 }

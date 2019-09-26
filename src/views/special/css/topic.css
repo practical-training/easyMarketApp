@@ -1,6 +1,13 @@
-.home {
+html,
+body,
+#root,
+#home {
     width: 100%;
     height: 100%;
+    font-size: calc(100 /750 * 100vw);
+}
+
+#home {
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -8,25 +15,27 @@
 
 .header {
     width: 100%;
-    height: 50px;
+    height: 1rem;
     display: flex;
     z-index: 2;
     background: #fff;
-    box-shadow: 0px 2px 0px 0px rgba(175, 154, 154, 0.1);
+    box-shadow: 0px 0.04rem 0px 0px rgba(175, 154, 154, 0.1);
 }
 
 .header span {
-    width: 40px;
+    width: .8rem;
     height: 100%;
     text-align: center;
-    line-height: 50px;
+    line-height: 1rem;
+    font-size: .32rem;
 }
 
 .header h4 {
     height: 100%;
     flex: 1;
     text-align: center;
-    line-height: 50px;
+    line-height: 1rem;
+    font-size: .32rem;
 }
 
 .common {
@@ -59,30 +68,32 @@
 
 .common .topicDetail .commentWrap .titleName {
     width: 100%;
-    height: 50px;
+    height: 1rem;
     display: flex;
 }
 
 .common .topicDetail .commentWrap .titleName span {
-    width: 40px;
-    height: 50px;
+    width: .8rem;
+    height: 1rem;
     text-align: center;
-    line-height: 50px;
+    line-height: 1rem;
+    font-size: .3rem;
 }
 
 .common .topicDetail .commentWrap .titleName h4 {
     height: 100%;
     flex: 1;
-    text-align: center;
-    line-height: 50px;
-    padding-left: 10px;
+    line-height: 1rem;
+    padding-left: .2rem;
+    font-size: .3rem;
 }
 
 .common .topicDetail .commentWrap .commentList .moreComment {
     width: 100%;
-    height: 50px;
-    line-height: 50px;
+    height: 1rem;
+    line-height: 1rem;
     text-align: center;
+    font-size: .3rem;
 }
 
 .common .topicDetail .commentWrap .relateTopic {
@@ -91,7 +102,8 @@
 
 .common .topicDetail .commentWrap .relateTopic .relateTopicTitle {
     width: 100%;
-    height: 40px;
-    line-height: 40px;
+    height: .8rem;
+    line-height: .8rem;
     text-align: center;
+    font-size: .3rem;
 }

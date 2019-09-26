@@ -1,4 +1,13 @@
-.home {
+html,
+body,
+#root,
+#home {
+    width: 100%;
+    height: 100%;
+    font-size: calc(100 /750 * 100vw);
+}
+
+#home {
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -8,53 +17,62 @@
 
 .header {
     width: 100%;
-    height: 50px;
+    height: 1rem;
     display: flex;
     z-index: 2;
     background: #fff;
-    box-shadow: 0px 2px 0px 0px rgba(175, 154, 154, 0.1);
+    box-shadow: 0px 0.04rem 0px 0px rgba(175, 154, 154, 0.1);
 }
 
 .header span {
-    width: 40px;
+    width: 0.8rem;
     height: 100%;
     text-align: center;
-    line-height: 50px;
+    line-height: 1rem;
+    font-size: .32rem;
 }
 
 .header h4 {
     height: 100%;
     flex: 1;
     text-align: center;
-    line-height: 50px;
+    line-height: 1rem;
+    font-size: .32rem;
 }
 
 .textAreaContent {
     width: 95%;
-    height: 200px;
+    height: 4rem;
     overflow: hidden;
     background: #fff;
-    border-radius: 10px;
-    margin: 10px auto;
+    border-radius: .2rem;
+    margin: .2rem auto;
 }
 
 .textAreaContent textarea {
     width: 100%;
-    height: 170px;
+    height: 3.4rem;
     display: block;
     border: none;
     outline: none;
     box-sizing: border-box;
+    font-size: .32rem;
+    padding-left: .1rem;
+    color: #000;
 }
 
 .textAreaContent span {
+    height: .4rem;
+    line-height: .4rem;
     display: block;
     text-align: right;
+    font-size: .28rem;
+    color: gray;
 }
 
 .buttons {
     width: 100%;
-    height: 40px;
+    height: 0.8rem;
     display: flex;
     justify-content: space-between;
 }
@@ -62,11 +80,43 @@
 .buttons div {
     height: 100%;
     text-align: center;
-    line-height: 40px;
+    line-height: 0.8rem;
+    font-size: .26rem;
+}
+
+.buttons .kong {
+    width: 2rem;
+    height: .6rem;
+    line-height: .6rem;
+    margin: 0 .2rem;
+    font-size: .26rem;
+    border-radius: .1rem;
+    background-color: #fff;
+    opacity: 0;
+}
+
+.active {
+    width: 2rem;
+    height: .6rem;
+    line-height: .6rem;
+    margin: 0 .2rem;
+    font-size: .26rem;
+    border-radius: .1rem;
+    background-color: #fff;
+    opacity: 1;
 }
 
 .buttons .btn {
-    width: 100px;
-    height: 30px;
-    margin: 5px;
+    width: 2rem;
+    height: .6rem;
+    line-height: .6rem;
+    margin: 0 .2rem;
+    font-size: .26rem;
+    border-radius: .1rem;
+    background-color: #108ee9;
+    color: #fff;
+    -webkit-border-radius: .1rem;
+    -moz-border-radius: .1rem;
+    -ms-border-radius: .1rem;
+    -o-border-radius: .1rem;
 }

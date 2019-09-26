@@ -1,5 +1,5 @@
 <template>
-  <div class="home" >
+  <div id="home" >
     <div class="header">
       <span @click="goto">&lt;</span>
       <h4>关爱每一个成长的痕迹</h4>

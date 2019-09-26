@@ -9,7 +9,7 @@
        
     </div>
     <div class="buttons">
-        <div @click="remove">{{qingkong}}</div>
+        <div @click="remove" :class="`${flag ? 'active' : 'kong'}`" >{{qingkong}}</div>
         <div class="btn" @click="btn">留 言</div>
     </div>
   </div>
@@ -26,6 +26,7 @@ export default {
     },
     data(){
         return {
+            flag:false,
             content: '',
             contentMaxLength: 80,
             qingkong:'',
@@ -60,7 +61,14 @@ export default {
             if (this.content.length > this.contentMaxLength) {
                 this.content = String(this.content).slice(0, this.contentMaxLength);
             }
+
+            
           this.qingkong =this.content.length>0?'清空':'';
+          if(this.qingkong){
+              this.flag =true;
+          }else{
+              this.flag =false;
+          }
         }
     }
 }
