@@ -25,7 +25,7 @@
         </div>
         <div class="cartMsgAll">已选(8)￥ 972</div>
         <div class="cartAllDoButton" @click="compile">{{compiles}}</div>
-        <div class="cartAllDoButton pay">{{DeleteOrder}}</div>
+        <div class="cartAllDoButton pay" @click="remove">{{DeleteOrder}}</div>
       </div>
     </div>
     <Footer />
@@ -59,7 +59,7 @@ export default {
     })
   },
   methods: {
-    ...mapActions("shopcar", ["getCart", "getChecked"]),
+    ...mapActions("shopcar", ["getCart", "getChecked",'getDelete']),
     ...mapMutations('shopcar',['setischecked']),
     checkeds() {
       this.flag = !this.flag;
@@ -71,7 +71,14 @@ export default {
       this.flag = !this.flag;
       this.compileflag = !this.compileflag;
        console.log(this.compileflag)
-
+    },
+    remove(){
+      if(this.DeleteOrder=='删除所选'){
+        console.log('删除所选...')
+        // this.getDelete({valueId:1,typeId:1})
+      }else{
+        console.log("还没有此功能")
+      }
     }
   },
   created() {
