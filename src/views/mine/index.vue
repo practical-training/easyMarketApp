@@ -7,6 +7,7 @@
 </template>
 <script>
 import Footer from "@/components/footer/index";
+import BScroll from 'better-scroll';
 import { mapState, mapActions } from "vuex";
 export default {
   components:{

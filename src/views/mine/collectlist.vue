@@ -23,6 +23,7 @@
 import CollectList from './components/collectList'
 import {mapState,mapActions} from 'vuex'
 import './css/collectlist.css'
+import BScroll from 'better-scroll';
 export default {
     props:{
 

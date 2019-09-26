@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GetCollect} from "../../service";
+import { GetCollect,Getaddordelete} from "../../service";
 export default {
   namespaced: true,
   state: {
@@ -20,7 +20,12 @@ export default {
         // commit("setCollect", data);
       });
     },
-   
-  
+    async getaddordelete({ commit }: any, item: any) {
+      let data = await Getaddordelete(item).then((res: any) => {
+          console.log(res)
+        // let data = res.data.data;
+        // commit("setCollect", data);
+      });
+    }
   }
 };
