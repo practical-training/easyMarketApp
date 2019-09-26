@@ -10,12 +10,15 @@ export default {
   },
   mutations: {
     setSpecial(state: any, data: any) {
-      if(!state.list.lenght){
-        state.list=data;
+    
+      if(data.item.page==1){
+        state.list=data.data;
+        console.log(state.list)
       }else {
-        data.forEach((item: never) => {
+        data.data.forEach((item: never) => {
           state.list.push(item);
         });
+        console.log(state.list)
       }
     },
     setTopic(state: any, data: any) {
@@ -35,7 +38,8 @@ export default {
     async getSpecial({ commit }: any, item: any) {
       let data = await GetSpecial(item).then((res: any) => {
         let data = res.data.data;
-        commit("setSpecial", data);
+        console.log(item)
+        commit("setSpecial", {data,item});
       });
     },
     async getTopic({ commit }: any, id: any) {

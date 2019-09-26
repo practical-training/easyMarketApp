@@ -25,14 +25,13 @@
 
 .list .list-title h4 {
     padding: .1rem;
-    padding-top: .2rem;
     font-size: .3rem;
-    line-height: .4rem;
+    line-height: .7rem;
     text-align: center;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    height: .4rem;
+    height: .7rem;
 }
 
 .list .list-title p {
@@ -44,6 +43,7 @@
     white-space: nowrap;
     color: gray;
     height: .4rem;
+    line-height: .4rem;
 }
 
 .list .list-title .topicItemSubtitle {
