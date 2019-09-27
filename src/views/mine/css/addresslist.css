@@ -49,6 +49,11 @@ body,
     flex: 1;
 }
 
+.addressSetPage {
+    width: 100%;
+    flex: 1;
+}
+
 .addressPage .addressList {
     width: 100%;
     padding-top: 5px;
