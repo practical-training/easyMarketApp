@@ -62,7 +62,11 @@ export default new Router({
       name: 'collectlist',
       component: () => import('./views/mine/collectlist.vue')
     },
-
+    {
+      path: '/addresslist',
+      name: 'addresslist',
+      component: () => import('./views/mine/addresslist.vue')
+    },
     
     {
       path:"/funny",

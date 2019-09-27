@@ -1,0 +1,48 @@
+.addressItem {
+    height: 80px;
+    background: white;
+    border-bottom: 1px solid gainsboro;
+    position: relative;
+}
+
+.addressItem .addressMsg {
+    position: absolute;
+    left: 15px;
+    right: 5px;
+    top: 5px;
+    bottom: 5px;
+    width: auto;
+    height: auto;
+    display: flex;
+}
+
+.addressItem .addressMsg .concatName {
+    width: 4em;
+    height: 33.333%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ff9500;
+}
+
+.addressItem .addressMsg .addressDetail {
+    flex: 1 1;
+}
+
+.addressItem .addressMsg .deleteAddress {
+    width: 40px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.addressItem .isChooseAddress {
+    position: absolute;
+    top: 5%;
+    left: 0;
+    height: 90%;
+    width: 6px;
+    background: #108ee9;
+}

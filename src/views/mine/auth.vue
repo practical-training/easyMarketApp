@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="userPower">
-        <div class="itemIcon">
+        <div class="itemIcon" @click="autoInfo">
             <i class="iconfont icon-clone"></i>
             <span>我的收藏</span>
         </div>
@@ -88,10 +88,19 @@ export default {
   components: {
     Footer
   },
+  methods:{
+    autoInfo() {
+      // this.$router.go(-1);
+       this.$router.push({
+        path: "/collectlist",
+        name: "collectlist",
+      });
+    },
+  },
   mounted() {
     this.auth = this.$route.params.id;
   }
 };
-</script>>
+</script>
 <style >
 </style>
