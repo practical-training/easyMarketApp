@@ -3,9 +3,6 @@ import request from "../utils/request"
 export let homeproduct=()=>{
     return request.get("/")
 }
-
-// //获取专题数据
-// export let getSpecial=(params:any)=>{
-//     return request.get("/topic/list",params)
-// }
-
+export let productDetil=(params:any)=>{//详情数据
+    return request.get("/goods/detail",{params})
+}

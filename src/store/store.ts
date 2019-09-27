@@ -6,6 +6,7 @@ import classify from "./modules/classify"
 import mine from './modules/mine'
 import shopcar from './modules/shopcar'
 
+import product from "./modules/product"
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -14,6 +15,7 @@ export default new Vuex.Store({
     special,
     classify,
     mine,
-    shopcar
+    shopcar,
+    product
   }
 })

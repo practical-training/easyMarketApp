@@ -22,7 +22,7 @@
             <span class="fg">——居家分类照片——</span>
             <div class="productbox">
               <div class="itembox">
-                <div v-for="item in itemClassify.subCategoryList" :key="item.id" class="item" @click="jupfunny(itemClassify.subCategoryList)">
+                <div v-for="item in itemClassify.subCategoryList" :key="item.id" class="item" @click="jupfunny(item.id)">
                   <img v-lazy="item.wap_banner_url" alt />
                   <span>{{item.name}}</span>
                 </div>
@@ -53,14 +53,8 @@ export default {
       this.count = index;
       this.getItemClassify({ id });
     },
-    jupfunny(list){
-      list=JSON.stringify(list)
-      this.$router.history.push({
-        name:"funny",
-        params:{
-          list
-        }
-      })
+    jupfunny(id){
+        this.$router.push(`/funny/${id}`)
     }
   },
   mounted() {

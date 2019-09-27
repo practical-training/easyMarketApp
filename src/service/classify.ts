@@ -8,3 +8,6 @@ export let getItemClassify=(params:any)=>{
 export let funnyClassify=(params:any)=>{
     return request.get("/goods/list",{params})
 }
+export let getNavlist=(params:any)=>{
+    return request.get("/goods/category",{params})
+}
