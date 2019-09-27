@@ -1,0 +1,105 @@
+.addressItem {
+    height: 80px;
+    background: white;
+    border-bottom: 1px solid gainsboro;
+    position: relative;
+}
+
+.addressItem .addressMsg {
+    position: absolute;
+    left: 15px;
+    right: 5px;
+    top: 5px;
+    bottom: 5px;
+    width: auto;
+    height: auto;
+    display: flex;
+}
+
+.addressItem .addressMsg .concatName {
+    width: 4em;
+    height: 33.333%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ff9500;
+}
+
+.addressItem .addressMsg .addressDetail {
+    flex: 1 1;
+}
+
+.addressItem .addressMsg .deleteAddress {
+    width: 40px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.addressItem .addressMsg .deleteAddress img {
+    width: 55%;
+    border-style: none;
+}
+
+.addressItem .isChooseAddress {
+    position: absolute;
+    top: 5%;
+    left: 0;
+    height: 90%;
+    width: 6px;
+    background: #108ee9;
+}
+
+.addressItem .addressMsg .addressDetail .concatPhone {
+    height: 33.333%;
+    display: flex;
+    align-items: center;
+}
+
+.addressItem .addressMsg .addressDetail .concatAddress {
+    height: 33.333%;
+    display: flex;
+    align-items: center;
+    color: gray;
+}
+
+.onePx_bottom {
+    position: relative;
+}
+
+.addressSetPage .addressInput {
+    width: 100%;
+    height: 1rem;
+    line-height: 1rem;
+    border: none;
+    outline: none;
+    margin-top: 1px;
+    text-indent: 1em;
+}
+
+.addressSetPage .chooseAddress {
+    height: 1rem;
+    line-height: 1rem;
+    margin-top: 1px;
+    text-indent: 1em;
+    background: white;
+}
+
+.addressSetPage .isDefaultAddress {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1rem;
+    line-height: 1rem;
+    margin-top: 1px;
+    background: white;
+}
+
+.addressSetPage .isDefaultAddress>img {
+    width: 0.4rem;
+    margin-left: 5px;
+    display: inline;
+    border-style: none;
+}

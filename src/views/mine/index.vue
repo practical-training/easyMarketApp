@@ -1,38 +1,44 @@
 <template>
-  <div id="mine">
-    <div class="tabPageContent">
-      <div class="minePage">
-        <div class="userMsgWrap">
-          <div class="userLogo"></div>
-          <div class="userMsgs">
-            <div>15323807318</div>
-            <div>普通用户</div>
-          </div>
-        </div>
-        <div class="userPower">
-          <div v-for="(item,ind) in data" :key={ind}>{{item}}</div>
-        </div>
-        <div class="loginOut">退出登录</div>
-      </div>
+  <div class="loginBox">
+    <div class="logo">
+      <img src="http://yanxuan.nosdn.127.net/bd139d2c42205f749cd4ab78fa3d6c60.png" alt />
     </div>
-    <Footer />
+    <div class="loginMain">
+      <div class="inputWrap onePx_bottom">
+        <input type="text" placeholder="请输入手机号码"  v-model="mobile"/>
+      </div>
+      <div class="inputWrap onePx_bottom">
+        <input type="password" placeholder="请输入登录密码" v-model="password"/>
+      </div>
+      <div class="loginBtn" @click="login">登 录</div>
+    </div>
   </div>
 </template>
 
 <script>
-import Footer from "@/components/footer/index";
-import "./index.css";
+import "./css/index.css";
+import {loginByMobile} from "@/service/index"
 export default {
-  data() {
-    return {
-      data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-    };
+  data(){
+    return{
+      mobile:"15323807318",
+      password:"123456"
+    }
   },
-  components: {
-    Footer
+  methods:{
+    login () {
+       loginByMobile({mobile:this.mobile,password:this.password}).then(res=>{
+          console.log(res)
+         if(res.errno==0){
+            this.$router.history.push(`/mine/auth/${res.data.mobile}`)
+         }
+       })   
+    }
+  },
+  mounted(){
+
   }
 };
-</script>
-<style lang='scss'>
-@import url("./index.css");
+</script>>
+<style >
 </style>

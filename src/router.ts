@@ -13,6 +13,11 @@ export default new Router({
       component: () => import('./views/home/index.vue')
     },
     {
+      path: '/brandDetail/:id',
+      name: 'brandDetail',
+      component: () => import('./views/brandDetail/index.vue')
+    },
+    {
       path: '/special',
       name: 'special',
       component: () => import('./views/special/index.vue')
@@ -43,6 +48,22 @@ export default new Router({
       name: 'mine',
       component: () => import('./views/mine/index.vue')
     },
+    {
+      path: '/mine/auth/:id',
+      name: 'auth',
+      component: () => import('./views/mine/auth.vue')
+    },
+    // {
+    //   path: '/collectlist',
+    //   name: 'collectlist',
+    //   component: () => import('./views/mine/collectlist.vue')
+    // },
+    {
+      path: '/addresslist',
+      name: 'addresslist',
+      component: () => import('./views/mine/addresslist.vue')
+    },
+    
     {
       path:"/funny",
       name:"funny",

@@ -1,24 +1,35 @@
 <template>
-  <div id="home">
-    <div class="content">
-      <div class="baaner">
+  <div class="tabPageContent" ref='tabPageContent'>
+    <div class="tabContent">
+      <div class="banner">
         <swiper :options="swiperOption" ref="mySwiper" class="swiper-container">
-          <swiper-slide class="swiper-slide" v-for="item in homeData.banner" :key="item.id">
+          <swiper-slide class="swiper-slide" v-for="item in data.banner" :key="item.id">
             <img v-lazy="item.image_url" alt />
           </swiper-slide>
           <div class="swiper-pagination" slot="pagination"></div>
         </swiper>
       </div>
-      <div class="nav">           
-        <div v-for="item in homeData.channel" :key="item.id" class="nav_item" @click="jupfunny(homeData.channel)"> 
-            <img v-lazy="item.icon_url" alt />
-            <div>{{item.name}}</div>
-        </div>      
+      <div class="nav">
+        <div
+          v-for="item in data.channel"
+          :key="item.id"
+          class="nav_item"
+          @click="handleFunny(item.id)"
+        >
+          <img v-lazy="item.icon_url" alt />
+          <div>{{item.name}}</div>
+        </div>
       </div>
       <div class="brandBox">
         <div class="brandTitle">品牌制造商直供</div>
         <div class="brandWrap">
-          <router-link to='/details' class="brandItem" v-for="item in homeData.brandList" :key="item.id">
+          <router-link
+            class="brandItem"
+            v-for="item in data.brandList"
+            :key="item.id"
+            :to="{name:'brandDetail', params: {id:item.id}}"
+            @click="handleBrandItem(item.id)"
+          >
             <div class="brandItemName">{{item.name}}</div>
             <div class="brandItemMinPrice">{{item.floor_price}}起</div>
             <img v-lazy="item.pic_url" alt />
@@ -28,7 +39,7 @@
       <div class="newGoodsBox">
         <div class="newGoodsTitle">新品首发</div>
         <div class="newGoodsWrap">
-          <a href class="newGoodsItem" v-for="item in homeData.newGoodsList" :key="item.id">
+          <a href class="newGoodsItem" v-for="item in data.newGoodsList" :key="item.id">
             <img v-lazy="item.list_pic_url" alt class="imgLazyload loadEnd" />
             <div class="newGoodsName">{{item.name}}</div>
           </a>
@@ -37,7 +48,7 @@
       <div class="hotGoodsBox">
         <div class="hotGoodsTitle">人气推荐</div>
         <div class="hotGoodsWrap">
-          <a href class="hotGoodsItem" v-for="item in homeData.hotGoodsList" :key="item.id">
+          <a href class="hotGoodsItem" v-for="item in data.hotGoodsList" :key="item.id">
             <img v-lazy="item.list_pic_url" alt class="imgLazyload loadEnd" />
             <div class="hotGoodsInfos">
               <div class="hotGoodsName">{{item.name}}</div>
@@ -51,7 +62,7 @@
         <div class="topGoodsTitle">专题精选</div>
         <div class="topGoodsWrap">
           <swiper :options="swiperOpt" ref="mySwiper" class="swiperOpt am-carousel">
-            <swiper-slide class="slider-frame" v-for="item in homeData.topicList" :key="item.id">
+            <swiper-slide class="slider-frame" v-for="item in data.topicList" :key="item.id">
               <ul class="slider-list">
                 <li class="slider-slide">
                   <a href class="topGoodsItem">
@@ -69,7 +80,7 @@
         </div>
       </div>
       <div class="cateGoryBox">
-        <div v-for="(item) in homeData.categoryList" :key="item.id">
+        <div v-for="(item) in data.categoryList" :key="item.id">
           <div class="cateGoryName">{{item.name}}</div>
           <div class="cateGoryGoodsWrap">
             <a href class v-for="ite in item.goodsList" :key="ite.id">
@@ -95,25 +106,27 @@
 </template>
 
 <script>
-import Footer from "@/components/footer/index";
-import "swiper/css/swiper.css";
-import { swiper, swiperSlide } from "vue-awesome-swiper";
-import { mapState, mapActions } from "vuex";
+// import 'swiper/dist/css/swiper.css'
+import 'swiper/css/swiper.css'
+import './css/index.css'
+import Footer from '@/components/footer/index.vue'
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import { mapState, mapActions } from 'vuex'
+import BScroll from 'better-scroll'
 export default {
-  data() {
+  data () {
     return {
       swiperOption: {
         autoplay: true,
         pagination: {
-          el: ".swiper-pagination"
+          el: '.swiper-pagination'
         }
       },
       swiperOpt: {
         autoplay: true,
-        loop:true
-        // spaceBetween : "10px",//slide之间的距离（单位px）
+        loop: true
       }
-    };
+    }
   },
   components: {
     Footer,
@@ -121,32 +134,22 @@ export default {
     swiperSlide
   },
   computed: {
-    ...mapState("home", {
-      homeData: "data"
-    })
+    ...mapState('home', ['data'])
   },
   methods: {
-    ...mapActions("home", ["updateValue"]),
-     jupfunny(list){
-      list=JSON.stringify(list)
-      this.$router.history.push({
-        name:"funny",
-        params:{
-          list
-        }
-      })
+    ...mapActions('home', ['updateValue']),
+
+    handleFunny (id) {
+       this.$router.history.push(`/funny/${id}`)
     }
   },
-   created(){
-    console.log(this.homeData)
-    
-  },
-  mounted() {
-    this.updateValue();
+  mounted () {
+    this.updateValue()
+    this.scroll = new BScroll(this.$refs.tabPageContent,{
+      click:true
+    })
   }
-};
+}
 </script>
 
-<style>
-@import url("./index.css");
-</style>
+<style lang='stylus' scoped></style>
