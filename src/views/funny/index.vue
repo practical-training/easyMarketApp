@@ -22,126 +22,94 @@
         <span>{{describe}}</span>
       </div>
       <div :class="[isdown==true?'active':'down']">{{downtit}}</div>
-      <div class="content">
-        <div class="contentbox">
-          <div
-            class="item"
-            v-for="(item,index) in funnydata"
-            :key="index"
-            @click="jupdetail(item.id)"
-          >
-            <img v-lazy="item.list_pic_url" alt />
-            <span>{{item.name}}</span>
-            <span :style="{color:'red'}">￥{{item.retail_price}}</span>
+      <MybetterScroll :list="list">
+        <div class="content">
+          <div class="contentbox">
+            <div
+              class="item"
+              v-for="(item,index) in list.funnydata"
+              :key="index"
+              @click="jupdetail(item.id)"
+            >
+              <img v-lazy="item.list_pic_url" alt />
+              <span>{{item.name}}</span>
+              <span :style="{color:'red'}">￥{{item.retail_price}}</span>
+            </div>
           </div>
-          <div :class="[ismore==true?'active':'more']">加载更多</div>
         </div>
-      </div>
+      </MybetterScroll>
     </div>
   </div>
 </template>
 <script>
-import { mapActions, mapState, mapMutations } from "vuex";
+import MybetterScroll from "../../components/mybetterScroll";
+import { mapActions, mapState, mapMutations, mapGetters } from "vuex";
 import BScroll from "better-scroll";
 export default {
   data() {
     return {
       itemClassify: [],
       tit: "",
-      id: "",
       isdown: false,
       ismore: false,
       downtit: "",
       describe: "",
-      categoryId: "",
-      page: 1,
-      size: 10
+      list: {
+        funnydata: [],
+        query: {
+          size: 10,
+          page:""
+        },
+        funnyClassify: this.funnyClassify,
+        upclassify: this.upclassify
+      }
     };
   },
+  components: {
+    MybetterScroll
+  },
   computed: {
-    ...mapState("classify", ["funnydata", "navlist", "count"])
+    ...mapState("classify", ["navlist", "funnydata", "categoryId","count"])
   },
   methods: {
     ...mapActions("classify", ["funnyClassify", "upclassify", "getNavlist"]),
     ...mapMutations("classify", ["setcount"]),
     tabclassify(index, id) {
       this.setcount(index);
-    },
-    goback() {
-      this.$router.go(-1);
+      this.list.query.page=1
+      this.updata()
     },
     jupdetail(id) {
       this.$router.push(`/detail/${id}`);
     },
-    handle_scroll() {
-      this.scroll = new BScroll(".content", {
-        pullDownRefresh: {
-          threshold: 50, //阈值
-          stop: 50
-        },
-        pullUpLoad: {
-          threshold: 50
-        },
-        click: true
-      });
-      this.scroll.on("pullingDown", () => {
-        //监听下拉刷新
-        this.isdown = true;
-        this.downtit = "下拉刷新";
-        this.page += 1;
-        this.funnyClassify({
-          categoryId: this.categoryId,
-          page: this.page,
-          size: this.size
-        });
-        setTimeout(() => {
-          this.isdown = false;
-          this.scroll.finishPullDown();
-        }, 1000);
-      });
-      this.scroll.on("pullingUp", () => {
-        this.page += 1;
-        this.upclassify({
-          categoryId: this.categoryId,
-          page: this.page,
-          size: this.size
-        });
-        setTimeout(() => {
-          this.isdown = false;
-          this.scroll.refresh();
-          this.scroll.finishPullUp();
-        }, 1000);
-      });
+    goback() {
+      this.$router.go(-1);
     },
     updata() {
       this.tit = this.navlist[this.count].name;
       this.describe = this.navlist[this.count].front_name;
-      this.categoryId = this.navlist[this.count].id;
+      this.list.funnydata = this.funnydata;
       this.funnyClassify({
-        categoryId: this.categoryId,
-        page: this.page,
-        size: this.size
+        categoryId:this.categoryId,
+        page: this.list.query.page,
+        size: this.list.query.size
       });
     }
   },
-  updated() {
-    this.downtit = "刷新成功";
-  },
   mounted() {
+    this.list.query.page=1
     this.oscroll = new BScroll(this.$refs.nav, {
       scrollX: true,
       click: true
     });
-    this.handle_scroll();
-    this.id = this.$route.params.id;
-    this.getNavlist({ id: this.id });
+    this.getNavlist({ id: this.$route.params.id });
   },
   watch: {
-    count: function(params) {
-      this.updata();
+    navlist:function (params) {
+       this.updata()
     },
-    navlist: function() {
-      this.updata();
+    funnydata:function (params) {
+      this.list.funnydata=this.funnydata
     }
   }
 };
