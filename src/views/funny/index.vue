@@ -5,13 +5,14 @@
       <span>奇趣分类</span>
       <i></i>
     </div>
-    <div class="nav">
+    <div class="nav" ref="nav">
       <div class="navbox">
         <span
-          v-for="(item,index) in itemClassify"
+          v-for="(item,index) in navlist"
           :key="item.id"
           @click="tabclassify(index,item.id)"
           :class="{active:index==count}"
+          :ref="index"
         >{{item.name}}</span>
       </div>
     </div>
@@ -20,52 +21,99 @@
         <span>{{tit}}</span>
         <span>{{describe}}</span>
       </div>
-      <div class="content">
-        <div class="contentbox">
-          <div class="item" v-for="item in funnydata" :key="item.id">
-            <img v-lazy="item.list_pic_url" alt="">
-            <span>{{item.name}}</span>
-            <span :style="{color:'red'}">￥{{item.retail_price}}</span>
+      <div :class="[isdown==true?'active':'down']">{{downtit}}</div>
+      <MybetterScroll :list="list">
+        <div class="content">
+          <div class="contentbox">
+            <div
+              class="item"
+              v-for="(item,index) in list.funnydata"
+              :key="index"
+              @click="jupdetail(item.id)"
+            >
+              <img v-lazy="item.list_pic_url" alt />
+              <span>{{item.name}}</span>
+              <span :style="{color:'red'}">￥{{item.retail_price}}</span>
+            </div>
           </div>
         </div>
-      </div>
+      </MybetterScroll>
     </div>
   </div>
 </template>
 <script>
-import { mapActions, mapState } from "vuex";
+import MybetterScroll from "../../components/mybetterScroll";
+import { mapActions, mapState, mapMutations, mapGetters } from "vuex";
+import BScroll from "better-scroll";
 export default {
   data() {
     return {
       itemClassify: [],
       tit: "",
-      count: 0,
+      isdown: false,
+      ismore: false,
+      downtit: "",
       describe: "",
-      categoryId:""
+      list: {
+        funnydata: [],
+        query: {
+          size: 10,
+          page:""
+        },
+        funnyClassify: this.funnyClassify,
+        upclassify: this.upclassify
+      }
     };
   },
+  components: {
+    MybetterScroll
+  },
   computed: {
-    ...mapState("classify", ["itemClassify", "funnydata", "initfunnydata"])
+    ...mapState("classify", ["navlist", "funnydata", "categoryId","count"])
   },
   methods: {
-    ...mapActions("classify", ["funnyClassify"]),
-    tabclassify(index,id) {
-      this.count=index
-      this.funnyClassify({ categoryId: id });
+    ...mapActions("classify", ["funnyClassify", "upclassify", "getNavlist"]),
+    ...mapMutations("classify", ["setcount"]),
+    tabclassify(index, id) {
+      this.setcount(index);
+      this.list.query.page=1
+      this.updata()
     },
-    goback(){
-      this.$router.go(-1)
+    jupdetail(id) {
+      this.$router.push(`/detail/${id}`);
+    },
+    goback() {
+      this.$router.go(-1);
+    },
+    updata() {
+      this.tit = this.navlist[this.count].name;
+      this.describe = this.navlist[this.count].front_name;
+      this.list.funnydata = this.funnydata;
+      this.funnyClassify({
+        categoryId:this.categoryId,
+        page: this.list.query.page,
+        size: this.list.query.size
+      });
     }
   },
-  mounted(){
-    this.itemClassify = JSON.parse(this.$route.params.list);
-    this.tit = this.itemClassify[this.count].name;
-    this.describe = this.itemClassify[this.count].front_name;
-    this.categoryId = this.itemClassify[this.count].id;
-    this.funnyClassify({categoryId:this.categoryId});
+  mounted() {
+    this.list.query.page=1
+    this.oscroll = new BScroll(this.$refs.nav, {
+      scrollX: true,
+      click: true
+    });
+    this.getNavlist({ id: this.$route.params.id });
+  },
+  watch: {
+    navlist:function (params) {
+       this.updata()
+    },
+    funnydata:function (params) {
+      this.list.funnydata=this.funnydata
+    }
   }
 };
 </script>
 <style>
 @import url("css/index.css");
-</style>
+</style>>

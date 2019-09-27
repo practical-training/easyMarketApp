@@ -3,12 +3,12 @@ import Vuex from 'vuex'
 import home from "./modules/home"
 import special from './modules/special'
 import classify from "./modules/classify"
+import product from "./modules/product"
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules:{
-    home,
-    special,
-    classify
+    home,classify,product,
+    special
   }
 })
