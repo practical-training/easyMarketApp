@@ -130,8 +130,3 @@ body,
   align-items: center;
   width: 100%;
 }
-
-.warper .footer {
-  width: 100%;
-  height: calc(0.4rem);
-}

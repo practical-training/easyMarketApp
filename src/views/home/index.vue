@@ -4,32 +4,32 @@
       <div class="baaner">
         <swiper :options="swiperOption" ref="mySwiper" class="swiper-container">
           <swiper-slide class="swiper-slide" v-for="item in homeData.banner" :key="item.id">
-            <img :src="item.image_url" alt />
+            <img v-lazy="item.image_url" alt />
           </swiper-slide>
           <div class="swiper-pagination" slot="pagination"></div>
         </swiper>
       </div>
-      <div class="nav">
-        <div v-for="item in homeData.channel" :key="item.id" class="nav_item">
-          <img :src="item.icon_url" alt />
-          <div>{{item.name}}</div>
-        </div>
+      <div class="nav">           
+        <div v-for="item in homeData.channel" :key="item.id" class="nav_item" @click="jupfunny(homeData.channel)"> 
+            <img v-lazy="item.icon_url" alt />
+            <div>{{item.name}}</div>
+        </div>      
       </div>
       <div class="brandBox">
         <div class="brandTitle">品牌制造商直供</div>
         <div class="brandWrap">
-          <a href class="brandItem" v-for="item in homeData.brandList" :key="item.id">
+          <router-link to='/details' class="brandItem" v-for="item in homeData.brandList" :key="item.id">
             <div class="brandItemName">{{item.name}}</div>
             <div class="brandItemMinPrice">{{item.floor_price}}起</div>
-            <img :src="item.pic_url" alt />
-          </a>
+            <img v-lazy="item.pic_url" alt />
+          </router-link>
         </div>
       </div>
       <div class="newGoodsBox">
         <div class="newGoodsTitle">新品首发</div>
         <div class="newGoodsWrap">
           <a href class="newGoodsItem" v-for="item in homeData.newGoodsList" :key="item.id">
-            <img :src="item.list_pic_url" alt class="imgLazyload loadEnd" />
+            <img v-lazy="item.list_pic_url" alt class="imgLazyload loadEnd" />
             <div class="newGoodsName">{{item.name}}</div>
           </a>
         </div>
@@ -38,7 +38,7 @@
         <div class="hotGoodsTitle">人气推荐</div>
         <div class="hotGoodsWrap">
           <a href class="hotGoodsItem" v-for="item in homeData.hotGoodsList" :key="item.id">
-            <img :src="item.list_pic_url" alt class="imgLazyload loadEnd" />
+            <img v-lazy="item.list_pic_url" alt class="imgLazyload loadEnd" />
             <div class="hotGoodsInfos">
               <div class="hotGoodsName">{{item.name}}</div>
               <div class="hotGoodsInfo">{{item.goods_brief}}</div>
@@ -55,7 +55,7 @@
               <ul class="slider-list">
                 <li class="slider-slide">
                   <a href class="topGoodsItem">
-                    <img :src="item.scene_pic_url" alt class="imgLazyload loadEnd" />
+                    <img v-lazy="item.scene_pic_url" alt class="imgLazyload loadEnd" />
                     <div class="topGoodSubTitle">
                       <span class="topGoodPrice">{{item.title}}</span>
                       ￥{{item.price_info}}起
@@ -74,7 +74,7 @@
           <div class="cateGoryGoodsWrap">
             <a href class v-for="ite in item.goodsList" :key="ite.id">
               <div class="goodsItemImg">
-                <img :src="ite.list_pic_url" alt />
+                <img v-lazy="ite.list_pic_url" alt />
               </div>
               <div class="goodsItemName">{{ite.name}}</div>
               <div class="goodsItemPrice">￥{{ite.retail_price}}</div>
@@ -104,7 +104,6 @@ export default {
     return {
       swiperOption: {
         autoplay: true,
-        loop: true,
         pagination: {
           el: ".swiper-pagination"
         }
@@ -127,7 +126,16 @@ export default {
     })
   },
   methods: {
-    ...mapActions("home", ["updateValue"])
+    ...mapActions("home", ["updateValue"]),
+     jupfunny(list){
+      list=JSON.stringify(list)
+      this.$router.history.push({
+        name:"funny",
+        params:{
+          list
+        }
+      })
+    }
   },
    created(){
     console.log(this.homeData)

@@ -26,22 +26,25 @@
 <style lang="scss">
 .footer{
   width: 100%;
-  height:1rem;
+  height:calc(0.5rem);
   background: #fff;
-  border-top: 0.02rem solid #ccc;
+  border-top: 1px solid #ccc;
   position: fixed;
   bottom: 0;
   left: 0;
   z-index: 2;
   display: flex;
-  font-size: .24rem;
+  font-size:14px;
 }
 
 .footer a{
   flex: 1;
   height: 100%;
-  line-height: 1rem;
-  text-align: center;
+  display:flex;
+  align-items: center;
+  justify-content: center;
   color: #000;
+  text-decoration: none;
+  list-style: none;
 }
 </style>

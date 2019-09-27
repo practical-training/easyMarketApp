@@ -1,5 +1,5 @@
 <template>
-  <div id="home" >
+  <div class="home" >
     <div class="header">
       <span @click="goto">&lt;</span>
       <h4>关爱每一个成长的痕迹</h4>
@@ -7,6 +7,10 @@
     <div class="common" ref="itemScroll">
         <div class="topicDetail">
             <div class="commentWrap">
+                <div class="titleName">
+                    <h4>精选留言</h4>
+                    <span>1</span>
+                </div>
                 <div class="commentList">
                     <Topiclist v-for="(item) in commentlist" :key="item.id" :items="item" />
                 </div>

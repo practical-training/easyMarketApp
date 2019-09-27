@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GetSpecial ,GetTopic,GetComment,GetRelated,GetCommentpost} from "../../service";
+import { GetSpecial ,GetTopic,GetComment,GetRelated} from "../../service";
 export default {
   namespaced: true,
   state: {
@@ -10,20 +10,15 @@ export default {
   },
   mutations: {
     setSpecial(state: any, data: any) {
-    
-      if(data.item.page==1){
-        state.list=data.data;
-        console.log(state.list)
-      }else {
-        data.data.forEach((item: never) => {
+      if (data.lenght !== 0) {
+        data.forEach((item: never) => {
           state.list.push(item);
         });
-        console.log(state.list)
       }
     },
     setTopic(state: any, data: any) {
       state.topicxq = data;
-      // console.log(state.topicxq)
+      console.log(state.topicxq)
     },
     setComment(state:any,data:any){
       state.commentlist=data;
@@ -38,8 +33,7 @@ export default {
     async getSpecial({ commit }: any, item: any) {
       let data = await GetSpecial(item).then((res: any) => {
         let data = res.data.data;
-        console.log(item)
-        commit("setSpecial", {data,item});
+        commit("setSpecial", data);
       });
     },
     async getTopic({ commit }: any, id: any) {
@@ -59,12 +53,6 @@ export default {
       let data = await GetRelated(item).then((res:any) => {
         
         commit("setGetRelated", res.data);
-      });
-    },
-    async getCommentpost({ commit }: any, item: any) {
-      let data = await GetCommentpost(item).then((res:any) => {
-        console.log(res)
-        // commit("setCommentpost", res.data);
       });
     }
   }
