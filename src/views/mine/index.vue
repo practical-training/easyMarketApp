@@ -1,31 +1,43 @@
 <template>
-  <div id='tabPageContent'>
-      <div class="userMsgWrap"></div>
-      <div class="userPower"></div>
-      <div class="loginOut"></div>
+  <div class="loginBox">
+    <div class="logo">
+      <img src="http://yanxuan.nosdn.127.net/bd139d2c42205f749cd4ab78fa3d6c60.png" alt />
+    </div>
+    <div class="loginMain">
+      <div class="inputWrap onePx_bottom">
+        <input type="text" placeholder="请输入手机号码"  v-model="mobile"/>
+      </div>
+      <div class="inputWrap onePx_bottom">
+        <input type="password" placeholder="请输入登录密码" v-model="password"/>
+      </div>
+      <div class="loginBtn" @click="login">登 录</div>
+    </div>
   </div>
 </template>
 <script>
-import Footer from "@/components/footer/index";
-import BScroll from 'better-scroll';
-import { mapState, mapActions } from "vuex";
+import "./css/index.css";
+import {loginByMobile} from "@/service/index"
 export default {
-  components:{
-    Footer
+  data(){
+    return{
+      mobile:"15323807318",
+      password:"123456"
+    }
   },
-  computed: {
-    ...mapState("home", {
-      homeData: "data"
-    })
+  methods:{
+    login () {
+       loginByMobile({mobile:this.mobile,password:this.password}).then(res=>{
+          console.log(res)
+         if(res.errno==0){
+            this.$router.history.push(`/mine/auth/${res.data.mobile}`)
+         }
+       })   
+    }
   },
-  methods: {
-    ...mapActions("home", ["updateValue"])
-  },
-  mounted() {
-    this.updateValue();
+  mounted(){
+
   }
 };
-</script>
-<style lang='scss'>
-
+</script>>
+<style >
 </style>

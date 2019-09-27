@@ -5,3 +5,7 @@ export let GetCollect=(data:any)=>{
 export let Getaddordelete=(data:any)=>{
     return request.post("/collect/addordelete",{params:data})
 }
+export let loginByMobile=(params:any)=>{
+    console.log(params)
+    return request.post("/auth/loginByMobile",params)
+}

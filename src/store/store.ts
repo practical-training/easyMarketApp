@@ -5,6 +5,7 @@ import special from './modules/special'
 import classify from "./modules/classify"
 import mine from './modules/mine'
 import shopcar from './modules/shopcar'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({

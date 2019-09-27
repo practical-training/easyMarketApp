@@ -15,6 +15,9 @@ body,html,#app{
   height: 100%;
   background-color: #f5f5f9;
 }
+html{
+   font-size: calc(100/750*100vw)
+}
 *{
   margin: 0;
   padding: 0;
