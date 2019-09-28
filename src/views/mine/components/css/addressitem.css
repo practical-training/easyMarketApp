@@ -98,7 +98,7 @@
 }
 
 .addressSetPage .isDefaultAddress>img {
-    /* width: 0.4rem; */
+    width: 0.4rem;
     margin-left: 5px;
     display: inline;
     border-style: none;
