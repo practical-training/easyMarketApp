@@ -17,5 +17,5 @@ export let GetRelated=(data:any)=>{
 }
 export let GetCommentpost=(data:any)=>{
     // console.log(data)
-    return request.post("/comment/post",{params:data})
+    return request.post("/comment/post",data)
 }

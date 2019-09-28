@@ -14,9 +14,9 @@
           </li>
         </ul>
         <div class="cartGoodsListWrap">
-          <CartGoodsItem :Checked="isChecked" :compile="compileflag"/>
-          <CartGoodsItem :Checked="isChecked" :compile="compileflag"/>
-          <CartGoodsItem :Checked="isChecked" :compile="compileflag"/>
+          <CartGoodsItem :Checked="isChecked" :compile="compileflag" v-for="(item) in cartLists" :key="item.id" :items="item"/>
+          <!-- <CartGoodsItem :Checked="isChecked" :compile="compileflag"/>
+          <CartGoodsItem :Checked="isChecked" :compile="compileflag"/> -->
         </div>
       </div>
       <div class="cartGoodsDo">
@@ -50,7 +50,9 @@ export default {
       isChecked:0,
       compiles:'编辑',
       DeleteOrder:'下单',
-      compileflag:false
+      compileflag:false,
+      cartLists:[],
+      cartTotals:{}
     };
   },
   computed: {
@@ -81,11 +83,15 @@ export default {
       }
     }
   },
-  created() {
-     
-      this.getCart({ typeId: 1 });
+  async created() {
+      await this.getCart({ typeId: 1 });
+      this.cartLists = this.cartlist.cartList;
+      this.cartTotals =this.cartlist.cartTotal;
+      console.log(this.cartLists)
+      console.log(this.cartTotals)
      },
   mounted() {
+  
     this.$nextTick(() => {
       // console.log(this.$refs.itemScroll)
       this.scroll = new BScroll(this.$refs.itemScroll, {

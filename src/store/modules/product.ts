@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { productDetil} from "../../service";
+// import { productDetil} from "../../service";
 Vue.use(Vuex);
 export default ({
   namespaced: true,
@@ -14,9 +14,9 @@ export default ({
     }
   },
   actions: {
-    async productDetil({commit}:any, payload:any) {
-      let data = await productDetil(payload);
-      commit("setDetaildata", { data });
-    }
+    // async productDetil({commit}:any, payload:any) {
+    //   let data = await productDetil(payload);
+    //   commit("setDetaildata", { data });
+    // }
   }
 });

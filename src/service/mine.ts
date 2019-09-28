@@ -9,3 +9,8 @@ export let loginByMobile=(params:any)=>{
     console.log(params)
     return request.post("/auth/loginByMobile",params)
 }
+
+export let Getaddress=(params:any)=>{
+    console.log(params)
+    return request.post("/address/list",params)
+}

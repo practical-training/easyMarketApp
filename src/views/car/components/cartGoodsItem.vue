@@ -4,25 +4,20 @@
       <img :src="checkedflag" alt />
     </div>
     <div class="goodsImg">
-      <img src alt />
+      <img :src="items.list_pic_url" alt />
     </div>
     <div class="cartGoodsMsg" v-if="!compileflag">
-      <div>蔓越莓曲奇 200克</div>
+      <div>{{items.goods_name}}</div>
       <div></div>
-      <div style="color: red;">￥36</div>
+      <div style="color: red;">￥{{items.retail_price}}</div>
     </div>
-    <div class="cartGoodsNum" v-if="!compileflag">X1</div>
+    <div class="cartGoodsNum" v-if="!compileflag">X{{items.number}}</div>
     <div class="cartGoodEditWrap" v-if="compileflag">
         <div class="cartEditSizeName">已选择：</div>
         <div class="cartEditNum">
-          <div style="color: red;">￥2599</div>
+          <div style="color: red;">￥{{items.retail_price}}</div>
           <div>
-              <CountOp />
-            <!-- <div class="countOp">
-              <div>-</div>
-              <div>1</div>
-              <div>+</div>
-            </div> -->
+              <CountOp :items="items"/>
           </div>
         </div>
     </div>
@@ -39,6 +34,9 @@ export default {
     },
     compile: {
       type: Boolean
+    },
+    items:{
+      type:Object
     }
   },
   components: {
@@ -65,7 +63,9 @@ export default {
       this.isChecked = this.flag ? 0 : 1;
     }
   },
-  created() {},
+  created() {
+    console.log(this.items)
+  },
   mounted() {},
   watch: {
     isChecked() {

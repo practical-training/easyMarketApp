@@ -3,30 +3,40 @@ import { GetCart ,GetChecked ,GetDelete,GetGoodscount} from "../../service";
 export default {
   namespaced: true,
   state: {
-    cartlist: [],
-    checked:0
+    cartlist: {},
+    checked:0,
+    number:0
  
   },
   mutations: {
-    // setCart(state: any, data: any) {
-    //     state.collectlist = data
-    //   },
+    setCart(state: any, data: any) {
+        state.cartlist = data;
+      },
     // setChecked(state: any, data: any) {
     //       state.collectlist = data
     //   },
     setischecked(state: any, ischecked: any){
       state.checked = ischecked;
       console.log(state.checked)
+    },
+    addnumber(state: any, data: any){
+      
+      let {name,number} =data;
+      if(name=='add'){
+       state.number=number+1
+      }else{
+        state.number=number-1
+      }
+      console.log(state.number)
     }
-    
   },
   actions: {
     //获取购物车的数据
     async getCart({ commit }: any, typeId: any) {
       let data = await GetCart(typeId).then((res: any) => {
-          console.log(res)
-        // let data = res.data.data;
-        // commit("setCart", data);
+       
+        let data = res.data;
+        commit("setCart", data);
       });
     },
     //判断购物车的选中状态

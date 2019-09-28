@@ -27,8 +27,10 @@ export default {
   methods:{
     login () {
        loginByMobile({mobile:this.mobile,password:this.password}).then(res=>{
-          console.log(res)
+          console.log(res.data.sessionKey)
+            window.localStorage.setItem('sessionKey',res.data.sessionKey)
          if(res.errno==0){
+
             this.$router.history.push(`/mine/auth/${res.data.mobile}`)
          }
        })   

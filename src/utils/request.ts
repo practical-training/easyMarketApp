@@ -1,10 +1,14 @@
 import axios from "axios";
 import {} from "antd"
 // import { getToken } from "./index";
+let key = window.localStorage.getItem('sessionKey');
+console.log(key)
 const instance = axios.create({
   baseURL:"http://202.96.155.121:8888",
-  // timeout: 1000,
-  // headers: { authorization: getToken() }
+  timeout: 1000,
+  headers: { 
+    "x-nideshop-token":key
+   }
 });
 instance.interceptors.request.use(
   config => {
