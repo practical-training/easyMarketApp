@@ -12,58 +12,58 @@
           </el-col>
         </div>
         <div class="userMsgs">
-            <div v-text="auth"></div>
-            <div>普通用户</div>
+          <div v-text="auth"></div>
+          <div>普通用户</div>
         </div>
       </div>
       <div class="userPower">
-        <div class="itemIcon" @click="autoInfo">
-            <i class="iconfont icon-clone"></i>
-            <span>我的收藏</span>
+        <div class="itemIcon" @click="skip('autoInfo')">
+          <i class="iconfont icon-clone"></i>
+          <span>我的收藏</span>
         </div>
-        <div class="itemIcon">
-            <i class="iconfont icon-clone"></i>
-            <span>地址管理</span>
+        <div class="itemIcon" @click="skip('addressitem')">
+          <i class="iconfont icon-clone"></i>
+          <span>地址管理</span>
         </div>
-        <div class="itemIcon">
-            <i class="iconfont icon-clone"></i>
-            <span>我的订单</span>
+        <div class="itemIcon" @click="skip()">
+          <i class="iconfont icon-clone"></i>
+          <span>我的订单</span>
         </div>
-        <div class="itemIcon">
-            <i class="iconfont icon-clone"></i>
-            <span>周末拼单</span>
+        <div class="itemIcon" @click="skip()">
+          <i class="iconfont icon-clone"></i>
+          <span>周末拼单</span>
         </div>
-        <div class="itemIcon">
-            <i class="iconfont icon-clone"></i>
-            <span>优惠卷</span>
+        <div class="itemIcon" @click="skip()">
+          <i class="iconfont icon-clone"></i>
+          <span>优惠卷</span>
         </div>
-        <div class="itemIcon">
-            <i class="iconfont icon-clone"></i>
-            <span>优先购</span>
+        <div class="itemIcon" @click="skip()">
+          <i class="iconfont icon-clone"></i>
+          <span>优先购</span>
         </div>
-        <div class="itemIcon">
-            <i class="iconfont icon-clone"></i>
-            <span>我的红包</span>
+        <div class="itemIcon" @click="skip()">
+          <i class="iconfont icon-clone"></i>
+          <span>我的红包</span>
         </div>
-        <div class="itemIcon">
-            <i class="iconfont icon-clone"></i>
-            <span>会员plus</span>
+        <div class="itemIcon" @click="skip()">
+          <i class="iconfont icon-clone"></i>
+          <span>会员plus</span>
         </div>
-        <div class="itemIcon">
-            <i class="iconfont icon-clone"></i>
-            <span>邀请返利</span>
+        <div class="itemIcon" @click="skip()">
+          <i class="iconfont icon-clone"></i>
+          <span>邀请返利</span>
         </div>
-        <div class="itemIcon">
-            <i class="iconfont icon-clone"></i>
-            <span>意见反馈</span>
+        <div class="itemIcon" @click="skip()">
+          <i class="iconfont icon-clone"></i>
+          <span>意见反馈</span>
         </div>
-        <div class="itemIcon">
-            <i class="iconfont icon-clone"></i>
-            <span>客服咨询</span>
+        <div class="itemIcon" @click="skip()">
+          <i class="iconfont icon-clone"></i>
+          <span>客服咨询</span>
         </div>
-        <div class="itemIcon">
-            <i class="iconfont icon-clone"></i>
-            <span>账户安全</span>
+        <div class="itemIcon" @click="skip()">
+          <i class="iconfont icon-clone"></i>
+          <span>账户安全</span>
         </div>
       </div>
       <div class="loginOut">退出登录</div>
@@ -73,7 +73,7 @@
 </template>
 <script>
 import Footer from "@/components/footer/index.vue";
-import "./css/auth.css"
+import "./css/auth.css";
 export default {
   data() {
     return {
@@ -88,14 +88,22 @@ export default {
   components: {
     Footer
   },
-  methods:{
-    autoInfo() {
-      // this.$router.go(-1);
-       this.$router.push({
-        path: "/collectlist",
-        name: "collectlist",
-      });
-    },
+  methods: {
+    skip(name) {
+      if (name == "autoInfo") {
+        this.$router.history.push({
+          path: "/collectlist",
+          name: "collectlist"
+        });
+      } else if (name == "addressitem") {
+        this.$router.history.push({
+          path: "/addresslist",
+          name: "addresslist"
+        });
+      } else {
+        console.log("暂无此功能！");
+      }
+    }
   },
   mounted() {
     this.auth = this.$route.params.id;

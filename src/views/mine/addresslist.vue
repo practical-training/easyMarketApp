@@ -85,9 +85,6 @@ export default {
         }
       });
     });
-    },
-    watch(){
-        
     }
 }
 </script>
