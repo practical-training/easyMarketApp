@@ -1,16 +1,18 @@
 import axios from "axios";
-import { GetCart ,GetChecked ,GetDelete,GetGoodscount} from "../../service";
+import { GetCart ,GetChecked ,GetDelete,GetGoodscount,GetUpdate} from "../../service";
 export default {
   namespaced: true,
   state: {
     cartlist: {},
     checked:null,
     number:0,
-    sum:0
+    sum:0,
+    checkedGoodsAmount:0
   },
   mutations: {
     setCart(state: any, data: any) {
         state.cartlist = data;
+
       },
     
     setischecked(state: any, ischecked: any){
@@ -18,7 +20,13 @@ export default {
     },
     setChecked(state: any, data: any){
       state.cartlist = data;
-      console.log( state.cartlist)
+      // state.cartlist.cartList.reduce((per:any,cur:any)=>{
+      //   return 
+      // })
+
+    },
+    setUpdate(state: any, data: any){
+      state.cartlist = data;
     },
     addnumber(state: any, data: any){
       let {name,number,id} =data;
@@ -27,16 +35,17 @@ export default {
       })
         if(name =='add'){
           state.cartlist.cartList[ind].number=number+1;
+        
         }else{
           if( number >1){
           state.cartlist.cartList[ind].number=number-1;
+        
           }
         }
     },
       //获取购物车的数量
     setGoodscount(state: any, data: any) {
       state.sum = data;
-      console.log(state.sum)
   }
   },
   actions: {
@@ -71,6 +80,13 @@ export default {
         commit("setGoodscount", data);
       });
     },
-
+  //获取购物车的数量
+  async getUpdate({ commit }: any, items: any) {
+    const result = await GetUpdate(items).then((res: any) => {
+     console.log(res)
+     let data = res.data;
+      commit("setUpdate", data);
+    });
+  },
   }
 };

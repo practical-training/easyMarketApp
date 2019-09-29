@@ -23,7 +23,7 @@
         <div class="isCheckItem" @click="checkeds">
           <img :src="checkedflag" alt />
         </div>
-        <div class="cartMsgAll">已选({{sum}})￥ 972</div>
+        <div class="cartMsgAll">已选({{sum}})￥ {{cartTotals.checkedGoodsAmount}}</div>
         <div class="cartAllDoButton" @click="compile">{{compiles}}</div>
         <div class="cartAllDoButton pay" @click="remove">{{DeleteOrder}}</div>
       </div>
@@ -58,7 +58,8 @@ export default {
   computed: {
     ...mapState("shopcar", {
       cartlist: "cartlist",
-      sum:"sum"
+      sum:"sum",
+      checkedGoodsAmount:'checkedGoodsAmount'
     })
   },
   methods: {
@@ -78,7 +79,22 @@ export default {
     remove(){
       if(this.DeleteOrder=='删除所选'){
         console.log('删除所选...')
-        // this.getDelete({valueId:1,typeId:1})
+        console.log(this.cartlist.cartList)
+        // this.cartlist.cartList
+        // this.getDelete({productIds:deletes})
+
+        var str="";
+        str=this.cartlist.cartList.map(function(elem,index){
+            return elem.product_id;
+        }).join(",");
+        console.log(str);
+        str="";
+        for(let i=0,j=obj.length;i<j;i++){
+            str+=obj[i].id+",";
+        }
+        str=str.substring(0,str.length-1);
+        console.log(str);
+
       }else{
         console.log("还没有此功能")
       }
@@ -88,7 +104,8 @@ export default {
       await this.getCart({ typeId: 1 });
       this.cartLists = this.cartlist.cartList;
       this.cartTotals =this.cartlist.cartTotal;
-       await this.getGoodscount();
+      await this.getGoodscount();
+      
      },
   mounted() {
   
@@ -126,16 +143,13 @@ export default {
           cartlist(){
           this.cartLists = this.cartlist.cartList;
           this.cartTotals =this.cartlist.cartTotal;
-       
         },
         cartLists(){
           this.cartLists = this.cartlist.cartList;
-           console.log("cartLists",this.cartLists)
             this.getGoodscount()
         },
         cartTotals(){
           this.cartTotals =this.cartlist.cartTotal;
-           console.log("cartTotals",this.cartTotals)
         }
     }
 };

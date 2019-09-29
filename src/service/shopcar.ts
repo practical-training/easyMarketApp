@@ -14,3 +14,6 @@ export let GetDelete=(data:any)=>{
 export let GetGoodscount=(data:any)=>{
     return request.get("/cart/goodscount",{params:data})
 }
+export let GetUpdate=(data:any)=>{
+    return request.post("/api/cart/update",data)
+}
