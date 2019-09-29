@@ -1,8 +1,8 @@
 <template>
     <div class="countOp">
-        <div @click="addnumber({name:'del',number:items.number})">-</div>
+        <div @click="addnumber({name:'del',number:items.number,id:items.id})">-</div>
         <div>{{items.number}}</div>
-        <div @click="addnumber({name:'add',number:items.number})">+</div>
+        <div @click="addnumber({name:'add',number:items.number,id:items.id})">+</div>
     </div>
 </template>
 <script>
@@ -23,9 +23,11 @@ export default {
         }
     },
     computed:{
+
     },
     methods:{
         ...mapMutations('shopcar',['addnumber']),
+        ...mapActions("shopcar", ['getGoodscount']),
         
     },
     created(){
@@ -34,6 +36,7 @@ export default {
     mounted(){
 
     }
+  
 }
 </script>
 <style lang="scss">

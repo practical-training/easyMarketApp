@@ -4,7 +4,7 @@ export let GetCart=(data:any)=>{
 }
 
 export let GetChecked=(data:any)=>{
-    return request.post("/cart/checked",{params:data})
+    return request.post("/cart/checked",data)
 }
 
 export let GetDelete=(data:any)=>{
