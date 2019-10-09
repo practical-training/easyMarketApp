@@ -14,7 +14,7 @@
           </li>
         </ul>
         <div class="cartGoodsListWrap">
-          <CartGoodsItem :Checked="isChecked" :compile="compileflag" v-for="(item) in cartLists" :key="item.id" :items="item"/>
+          <CartGoodsItem :Checked="isChecked" :compile="compileflag" v-for="(item) in cartLists" :key="item.id" :items="item" />
           <!-- <CartGoodsItem :Checked="isChecked" :compile="compileflag"/>
           <CartGoodsItem :Checked="isChecked" :compile="compileflag"/> -->
         </div>
@@ -23,7 +23,7 @@
         <div class="isCheckItem" @click="checkeds">
           <img :src="checkedflag" alt />
         </div>
-        <div class="cartMsgAll">已选({{sum}})￥ {{cartTotals.checkedGoodsAmount}}</div>
+        <div class="cartMsgAll">已选({{sum}})￥ {{checkedGoodsAmount}}</div>
         <div class="cartAllDoButton" @click="compile">{{compiles}}</div>
         <div class="cartAllDoButton pay" @click="remove">{{DeleteOrder}}</div>
       </div>
@@ -45,7 +45,6 @@ export default {
   },
   data() {
     return {
-      flag: true,
       checkedflag:'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAmCAMAAACf4xmcAAAAQlBMVEUAAACrKyurKyurKyurKyurKyurKyurKyurKyurKyurKyurKyurKyurKyurKyvw19exOzv////z4uK1Q0Pt0dGxOjp+CNkCAAAADnRSTlMARVn7B9cVoc/jIWtnJIM++AMAAADUSURBVDjLndRLEoMgEEVRPyCg+FAh+99qYqmAabFL7/hMaKCrN/VWyRZopbJ9ETUaWbq5RLXBX6YmSChcpMRZdRKX6e6kDAqZzAmNYlpEpnCTimfEbfWmhLlnZp8qmLY5a47pVY0oNIWArfV+h5Jy88FsNg2q3JTNRLIK8sd4hTZnwfmzSuVsmRdPFGV+d1S18QjJUQUZB5IcVVBxvMlRBRsvKzmq0JOr9y58yNU/eEj8s3zyyPkvcyQk9wH57/xwOfCrhl9cNMGswdQ4HEt1GKsXfQHGSThPkNi75AAAAABJRU5ErkJggg',
       isChecked:0,
       compiles:'编辑',
@@ -59,53 +58,56 @@ export default {
     ...mapState("shopcar", {
       cartlist: "cartlist",
       sum:"sum",
-      checkedGoodsAmount:'checkedGoodsAmount'
+      checkedGoodsAmount:'checkedGoodsAmount',
+      checked:'checked',
+      flag:'flag'
     })
   },
   methods: {
     ...mapActions("shopcar", ["getCart", "getChecked",'getDelete','getGoodscount']),
-    ...mapMutations('shopcar',['setischecked']),
+    ...mapMutations('shopcar',['setischecked','setflag','flagset']),
     checkeds() {
-      this.flag = !this.flag;
-      
+      this.flagset()
+      this.setflag()
+      // this.flag = !this.flag;
         //是否选中
         // this.getChecked({isChecked:1,productId:111})
+
+        // console.log(!this.flag)
     },
     compile(){
-      this.flag = !this.flag;
       this.compileflag = !this.compileflag;
-     
     },
     remove(){
       if(this.DeleteOrder=='删除所选'){
-        console.log('删除所选...')
-        console.log(this.cartlist.cartList)
-        // this.cartlist.cartList
-        // this.getDelete({productIds:deletes})
-
+       let deletes = this.cartlist.cartList.filter((item)=>{
+        return item = item.checked ==1
+      })
         var str="";
-        str=this.cartlist.cartList.map(function(elem,index){
-            return elem.product_id;
-        }).join(",");
-        console.log(str);
-        str="";
-        for(let i=0,j=obj.length;i<j;i++){
-            str+=obj[i].id+",";
+        // str=this.cartlist.cartList.map(function(elem,index){
+        //     return elem.product_id;
+        // }).join(",");
+        // console.log(str);
+        // str="";
+        for(let i=0,j=deletes.length;i<j;i++){
+            str+=deletes[i].product_id+",";
         }
         str=str.substring(0,str.length-1);
         console.log(str);
-
+        this.getDelete({productIds:str})
+        this.compileflag = !this.compileflag;
       }else{
         console.log("还没有此功能")
       }
     }
   },
   async created() {
+    
       await this.getCart({ typeId: 1 });
       this.cartLists = this.cartlist.cartList;
       this.cartTotals =this.cartlist.cartTotal;
       await this.getGoodscount();
-      
+      this.setflag()
      },
   mounted() {
   
@@ -131,8 +133,8 @@ export default {
   watch: {
         flag() {
            this.checkedflag = this.flag
-        ? "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAmCAMAAACf4xmcAAAAQlBMVEUAAACrKyurKyurKyurKyurKyurKyurKyurKyurKyurKyurKyurKyurKyurKyvw19exOzv////z4uK1Q0Pt0dGxOjp+CNkCAAAADnRSTlMARVn7B9cVoc/jIWtnJIM++AMAAADUSURBVDjLndRLEoMgEEVRPyCg+FAh+99qYqmAabFL7/hMaKCrN/VWyRZopbJ9ETUaWbq5RLXBX6YmSChcpMRZdRKX6e6kDAqZzAmNYlpEpnCTimfEbfWmhLlnZp8qmLY5a47pVY0oNIWArfV+h5Jy88FsNg2q3JTNRLIK8sd4hTZnwfmzSuVsmRdPFGV+d1S18QjJUQUZB5IcVVBxvMlRBRsvKzmq0JOr9y58yNU/eEj8s3zyyPkvcyQk9wH57/xwOfCrhl9cNMGswdQ4HEt1GKsXfQHGSThPkNi75AAAAABJRU5ErkJggg"
-        : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAmCAMAAACf4xmcAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAABCUExURUdwTMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzAV+Z0EAAAAVdFJOUwAJ+KUEFTPay2bzRXdZ7RkhmJ6qJOWhY+QAAAEDSURBVDjLnZTplsIgDIUNWwK2tdt9/1cdxHGmVcAc+dH25Hw0+71cvjhztDIZM4mNc4txo+BwZKxSVwbSFoMn8iFuCeDrG0RLNkc6GGK+ttCZ8gIzuJcgBgPxJ4rB4T2OkM0HjgRyq8V7Y8i/3/V06YVb/nKECa0qBYPffB1jaFd8AD8+RrBrY8R41FkQew2MkPtrR6IeRglzoW1/HrbizfZ9Pv8jCH0slOAm+D7mMeUn4PoYwegxpVNlCsqCKMurbJay9R8GyT0HSTmWeciTYsh7K+MPK1MW0H9eQOU652sqcch+15rUrFQXLpuFy7ksXLYuXDUZbBZ9v4sqiqju34jyD97JD4dkfgo1AAAAAElFTkSuQmCC";
+        ? "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAmCAMAAACf4xmcAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAABCUExURUdwTMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzAV+Z0EAAAAVdFJOUwAJ+KUEFTPay2bzRXdZ7RkhmJ6qJOWhY+QAAAEDSURBVDjLnZTplsIgDIUNWwK2tdt9/1cdxHGmVcAc+dH25Hw0+71cvjhztDIZM4mNc4txo+BwZKxSVwbSFoMn8iFuCeDrG0RLNkc6GGK+ttCZ8gIzuJcgBgPxJ4rB4T2OkM0HjgRyq8V7Y8i/3/V06YVb/nKECa0qBYPffB1jaFd8AD8+RrBrY8R41FkQew2MkPtrR6IeRglzoW1/HrbizfZ9Pv8jCH0slOAm+D7mMeUn4PoYwegxpVNlCsqCKMurbJay9R8GyT0HSTmWeciTYsh7K+MPK1MW0H9eQOU652sqcch+15rUrFQXLpuFy7ksXLYuXDUZbBZ9v4sqiqju34jyD97JD4dkfgo1AAAAAElFTkSuQmCC"
+        : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAmCAMAAACf4xmcAAAAQlBMVEUAAACrKyurKyurKyurKyurKyurKyurKyurKyurKyurKyurKyurKyurKyurKyvw19exOzv////z4uK1Q0Pt0dGxOjp+CNkCAAAADnRSTlMARVn7B9cVoc/jIWtnJIM++AMAAADUSURBVDjLndRLEoMgEEVRPyCg+FAh+99qYqmAabFL7/hMaKCrN/VWyRZopbJ9ETUaWbq5RLXBX6YmSChcpMRZdRKX6e6kDAqZzAmNYlpEpnCTimfEbfWmhLlnZp8qmLY5a47pVY0oNIWArfV+h5Jy88FsNg2q3JTNRLIK8sd4hTZnwfmzSuVsmRdPFGV+d1S18QjJUQUZB5IcVVBxvMlRBRsvKzmq0JOr9y58yNU/eEj8s3zyyPkvcyQk9wH57/xwOfCrhl9cNMGswdQ4HEt1GKsXfQHGSThPkNi75AAAAABJRU5ErkJggg";
         this.isChecked = this.flag?0:1;
         this.setischecked(this.isChecked);
         },
@@ -141,8 +143,10 @@ export default {
           this.DeleteOrder = this.compileflag?'删除所选':'下单';
         },
           cartlist(){
+          this.getCart({ typeId: 1 })
           this.cartLists = this.cartlist.cartList;
           this.cartTotals =this.cartlist.cartTotal;
+
         },
         cartLists(){
           this.cartLists = this.cartlist.cartList;
@@ -150,7 +154,10 @@ export default {
         },
         cartTotals(){
           this.cartTotals =this.cartlist.cartTotal;
-        }
+        },
+        sum(){
+          this.setflag()
+        },
     }
 };
 </script>

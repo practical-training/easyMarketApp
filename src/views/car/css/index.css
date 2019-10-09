@@ -23,6 +23,7 @@ body,
     width: 100%;
     flex: 1;
     overflow: hidden;
+    padding-bottom: 0.50rem;
 }
 
 .shopcar .car {
@@ -95,6 +96,11 @@ body,
     justify-content: center;
     align-items: center;
     font-size: .3rem;
+}
+
+.cartGoodsListWrap {
+    width: 100%;
+    flex: 1;
 }
 
 .cartGoodsDo .pay {

@@ -8,7 +8,7 @@ export let GetChecked=(data:any)=>{
 }
 
 export let GetDelete=(data:any)=>{
-    return request.post("/cart/delete",{params:data})
+    return request.post("/cart/delete",data)
 }
 
 export let GetGoodscount=(data:any)=>{
