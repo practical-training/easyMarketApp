@@ -6,16 +6,7 @@
         </div>
         <div class="collectList" ref="itemScroll">
             <!-- <div class="collectscroll"></div> -->
-                <CollectList />
-                <CollectList />
-                <CollectList />
-                <CollectList />
-                <CollectList />
-                <CollectList />
-                <CollectList />
-                <CollectList />
-                <CollectList />
-                
+                <CollectList v-for="item in collectlist" :key="item.id" :items="item"/> 
         </div>
     </div>
 </template>
@@ -48,7 +39,7 @@ export default {
     },
     },
     created(){
-        this.getCollect({typeId	:1})
+        this.getCollect({typeId	:0,size:1000})
     },
     mounted(){
         this.$nextTick(() => {
@@ -69,6 +60,11 @@ export default {
         }
       });
     });
+    },
+    watch: {
+        collectlist(){
+            this.getCollect({typeId	:0,size:1000})
+        }
     }
 }
 </script>

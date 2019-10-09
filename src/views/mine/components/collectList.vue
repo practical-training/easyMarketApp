@@ -10,11 +10,11 @@
       <!-- 插槽中放具体项目中需要内容         -->
       <slot>
         <div class="collectItem">
-          <img src alt />
+          <img :src="items.list_pic_url" alt />
           <div class="collectMsg">
-            <div>魔兽世界 部落 奥格瑞玛 拉杆箱 可登机</div>
-            <div>18寸，可携带登机</div>
-            <div>￥12</div>
+            <div>{{items.name}}</div>
+            <div>{{items.goods_brief}}</div>
+            <div>￥{{items.retail_price}}</div>
           </div>
         </div>
       </slot>
@@ -27,7 +27,11 @@ import {mapActions} from 'vuex'
 import "./css/collectList.css";
 import BScroll from 'better-scroll';
 export default {
-  props: {},
+  props: {
+    items:{
+        type: Object
+    }
+  },
   components: {},
   data() {
     return {
@@ -40,7 +44,7 @@ export default {
   },
   computed: {},
   methods: {
-    ...mapActions('mine',['getaddordelete']),
+    ...mapActions('mine',['getaddordelete','getCollect']),
     touchStart(ev) {
       ev = ev || event;
       //tounches类数组，等于1时表示此时有只有一只手指在触摸屏幕
@@ -89,16 +93,19 @@ export default {
       }
     },
     delect(){
-      console.log(1)
-      // this.getaddordelete({typeId:1,valueId:this.items.id})
-      // this.getaddordelete({typeId:1,valueId:111})
+      console.log(this.items.value_id)
+      this.getaddordelete({ valueId: this.items.value_id, typeId: 0})
+      
     }
   },
   created() {
     // getaddordelete
+    console.log(this.items)
   },
   mounted() {}
 };
 </script>
+
 <style lang="scss">
+
 </style>
